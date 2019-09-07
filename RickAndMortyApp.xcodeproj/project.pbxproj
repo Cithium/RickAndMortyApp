@@ -16,6 +16,13 @@
 		851191772323D46800760E12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 851191752323D46800760E12 /* LaunchScreen.storyboard */; };
 		851191802323D7E900760E12 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511917F2323D7E900760E12 /* Service.swift */; };
 		851191822323DA0700760E12 /* CharacterSampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 851191812323DA0700760E12 /* CharacterSampleData.json */; };
+		851191862323DC0C00760E12 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851191852323DC0C00760E12 /* CoreDataManager.swift */; };
+		8511918E232410D400760E12 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511918D232410D400760E12 /* Character+CoreDataClass.swift */; };
+		8511918F232410D400760E12 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511918B232410D300760E12 /* Location+CoreDataProperties.swift */; };
+		85119190232410D400760E12 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511918C232410D300760E12 /* Location+CoreDataClass.swift */; };
+		85119191232410D400760E12 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511918A232410D300760E12 /* Character+CoreDataProperties.swift */; };
+		85119192232410D400760E12 /* Origin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85119188232410D300760E12 /* Origin+CoreDataClass.swift */; };
+		85119193232410D400760E12 /* Origin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85119189232410D300760E12 /* Origin+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +37,13 @@
 		851191782323D46800760E12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8511917F2323D7E900760E12 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		851191812323DA0700760E12 /* CharacterSampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CharacterSampleData.json; sourceTree = "<group>"; };
+		851191852323DC0C00760E12 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		85119188232410D300760E12 /* Origin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Origin+CoreDataClass.swift"; path = "/Users/hamza.a/GitLab/RickAndMortyApp/RickAndMortyApp/CoreData/Origin+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		85119189232410D300760E12 /* Origin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Origin+CoreDataProperties.swift"; path = "/Users/hamza.a/GitLab/RickAndMortyApp/RickAndMortyApp/CoreData/Origin+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		8511918A232410D300760E12 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataProperties.swift"; path = "/Users/hamza.a/GitLab/RickAndMortyApp/RickAndMortyApp/CoreData/Character+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		8511918B232410D300760E12 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "/Users/hamza.a/GitLab/RickAndMortyApp/RickAndMortyApp/CoreData/Location+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		8511918C232410D300760E12 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataClass.swift"; path = "/Users/hamza.a/GitLab/RickAndMortyApp/RickAndMortyApp/CoreData/Location+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		8511918D232410D400760E12 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataClass.swift"; path = "/Users/hamza.a/GitLab/RickAndMortyApp/RickAndMortyApp/CoreData/Character+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		B2B16DFCD75528829389EF91 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CD7744973B193F7FB567C5E9 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -76,6 +90,8 @@
 		851191682323D46700760E12 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				851191842323DBED00760E12 /* CoreData */,
+				851191872324100B00760E12 /* Model */,
 				8511917E2323D73F00760E12 /* Service */,
 				851191692323D46700760E12 /* AppDelegate.swift */,
 				8511916B2323D46700760E12 /* ViewController.swift */,
@@ -95,6 +111,27 @@
 				851191812323DA0700760E12 /* CharacterSampleData.json */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		851191842323DBED00760E12 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8511918D232410D400760E12 /* Character+CoreDataClass.swift */,
+				8511918A232410D300760E12 /* Character+CoreDataProperties.swift */,
+				8511918C232410D300760E12 /* Location+CoreDataClass.swift */,
+				8511918B232410D300760E12 /* Location+CoreDataProperties.swift */,
+				85119188232410D300760E12 /* Origin+CoreDataClass.swift */,
+				85119189232410D300760E12 /* Origin+CoreDataProperties.swift */,
+				851191852323DC0C00760E12 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		851191872324100B00760E12 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D77EE49ECCA7551CF48AFDA0 /* Frameworks */ = {
@@ -222,8 +259,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8511916C2323D46700760E12 /* ViewController.swift in Sources */,
+				8511918F232410D400760E12 /* Location+CoreDataProperties.swift in Sources */,
+				8511918E232410D400760E12 /* Character+CoreDataClass.swift in Sources */,
+				85119192232410D400760E12 /* Origin+CoreDataClass.swift in Sources */,
 				851191802323D7E900760E12 /* Service.swift in Sources */,
+				85119193232410D400760E12 /* Origin+CoreDataProperties.swift in Sources */,
+				85119190232410D400760E12 /* Location+CoreDataClass.swift in Sources */,
+				85119191232410D400760E12 /* Character+CoreDataProperties.swift in Sources */,
 				851191722323D46700760E12 /* RickAndMortyApp.xcdatamodeld in Sources */,
+				851191862323DC0C00760E12 /* CoreDataManager.swift in Sources */,
 				8511916A2323D46700760E12 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

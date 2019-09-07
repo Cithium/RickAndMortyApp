@@ -7,12 +7,30 @@
 //
 
 import UIKit
+import Moya
 
 class ViewController: UIViewController {
+    
+    var service = MoyaProvider<Service>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        service.request(.getCharacters) { (result) in
+            switch (result) {
+            case let .success(response):
+                do {
+                    try _ = response.filterSuccessfulStatusCodes()
+                    let data = try response.mapJSON()
+                    print(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
 
 
