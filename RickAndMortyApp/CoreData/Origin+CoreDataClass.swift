@@ -13,8 +13,3 @@ import CoreData
 public class Origin: NSManagedObject {
 
 }
-
-struct JSONOrigin: Decodable {
-    var id: Int64
-    var url: String
-}

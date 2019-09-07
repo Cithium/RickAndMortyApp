@@ -11,12 +11,22 @@ PODS:
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
+  - PromiseKit (6.11.0):
+    - PromiseKit/CorePromise (= 6.11.0)
+    - PromiseKit/Foundation (= 6.11.0)
+    - PromiseKit/UIKit (= 6.11.0)
+  - PromiseKit/CorePromise (6.11.0)
+  - PromiseKit/Foundation (6.11.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.11.0):
+    - PromiseKit/CorePromise
   - Result (4.1.0)
 
 DEPENDENCIES:
   - Hero
   - IGListKit (~> 3.4.0)
   - Moya (~> 13.0)
+  - PromiseKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -24,6 +34,7 @@ SPEC REPOS:
     - Hero
     - IGListKit
     - Moya
+    - PromiseKit
     - Result
 
 SPEC CHECKSUMS:
@@ -31,8 +42,9 @@ SPEC CHECKSUMS:
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
 
-PODFILE CHECKSUM: 662efd51e9a38c41750fb14ec47306d1d6cbae95
+PODFILE CHECKSUM: 1bf04abb4a213a7826ee8734e2d8042f0c90bb9b
 
 COCOAPODS: 1.7.5

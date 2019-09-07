@@ -13,8 +13,3 @@ import CoreData
 public class Location: NSManagedObject {
 
 }
-
-struct JSONLocation: Decodable {
-    var id: Int64
-    var url: String
-}

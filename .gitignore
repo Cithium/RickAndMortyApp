@@ -256,3 +256,61 @@ Pods/Target Support Files/Result/Result-prefix.pch
 Pods/Target Support Files/Result/Result-umbrella.h
 Pods/Target Support Files/Result/Result.modulemap
 Pods/Target Support Files/Result/Result.xcconfig
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/PromiseKit.xcscheme
+Pods/PromiseKit/LICENSE
+Pods/PromiseKit/README.md
+Pods/PromiseKit/Extensions/Foundation/Sources/afterlife.swift
+Pods/PromiseKit/Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.h
+Pods/PromiseKit/Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.m
+Pods/PromiseKit/Extensions/Foundation/Sources/NSNotificationCenter+Promise.swift
+Pods/PromiseKit/Extensions/Foundation/Sources/NSObject+Promise.swift
+Pods/PromiseKit/Extensions/Foundation/Sources/NSTask+AnyPromise.h
+Pods/PromiseKit/Extensions/Foundation/Sources/NSTask+AnyPromise.m
+Pods/PromiseKit/Extensions/Foundation/Sources/NSURLSession+AnyPromise.h
+Pods/PromiseKit/Extensions/Foundation/Sources/NSURLSession+AnyPromise.m
+Pods/PromiseKit/Extensions/Foundation/Sources/NSURLSession+Promise.swift
+Pods/PromiseKit/Extensions/Foundation/Sources/PMKFoundation.h
+Pods/PromiseKit/Extensions/Foundation/Sources/Process+Promise.swift
+Pods/PromiseKit/Extensions/UIKit/Sources/PMKUIKit.h
+Pods/PromiseKit/Extensions/UIKit/Sources/UIView+AnyPromise.h
+Pods/PromiseKit/Extensions/UIKit/Sources/UIView+AnyPromise.m
+Pods/PromiseKit/Extensions/UIKit/Sources/UIView+Promise.swift
+Pods/PromiseKit/Extensions/UIKit/Sources/UIViewController+AnyPromise.h
+Pods/PromiseKit/Extensions/UIKit/Sources/UIViewController+AnyPromise.m
+Pods/PromiseKit/Extensions/UIKit/Sources/UIViewPropertyAnimator+Promise.swift
+Pods/PromiseKit/Sources/after.m
+Pods/PromiseKit/Sources/after.swift
+Pods/PromiseKit/Sources/AnyPromise+Private.h
+Pods/PromiseKit/Sources/AnyPromise.h
+Pods/PromiseKit/Sources/AnyPromise.m
+Pods/PromiseKit/Sources/AnyPromise.swift
+Pods/PromiseKit/Sources/Box.swift
+Pods/PromiseKit/Sources/Catchable.swift
+Pods/PromiseKit/Sources/Configuration.swift
+Pods/PromiseKit/Sources/CustomStringConvertible.swift
+Pods/PromiseKit/Sources/Deprecations.swift
+Pods/PromiseKit/Sources/dispatch_promise.m
+Pods/PromiseKit/Sources/Error.swift
+Pods/PromiseKit/Sources/firstly.swift
+Pods/PromiseKit/Sources/fwd.h
+Pods/PromiseKit/Sources/Guarantee.swift
+Pods/PromiseKit/Sources/hang.m
+Pods/PromiseKit/Sources/hang.swift
+Pods/PromiseKit/Sources/join.m
+Pods/PromiseKit/Sources/LogEvent.swift
+Pods/PromiseKit/Sources/NSMethodSignatureForBlock.m
+Pods/PromiseKit/Sources/PMKCallVariadicBlock.m
+Pods/PromiseKit/Sources/Promise.swift
+Pods/PromiseKit/Sources/PromiseKit.h
+Pods/PromiseKit/Sources/race.m
+Pods/PromiseKit/Sources/race.swift
+Pods/PromiseKit/Sources/Resolver.swift
+Pods/PromiseKit/Sources/Thenable.swift
+Pods/PromiseKit/Sources/when.m
+Pods/PromiseKit/Sources/when.swift
+Pods/Target Support Files/PromiseKit/PromiseKit-dummy.m
+Pods/Target Support Files/PromiseKit/PromiseKit-Info.plist
+Pods/Target Support Files/PromiseKit/PromiseKit-prefix.pch
+Pods/Target Support Files/PromiseKit/PromiseKit-umbrella.h
+Pods/Target Support Files/PromiseKit/PromiseKit.modulemap
+Pods/Target Support Files/PromiseKit/PromiseKit.xcconfig
