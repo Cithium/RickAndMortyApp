@@ -1,0 +1,258 @@
+Pods/Manifest.lock
+Pods/Alamofire/LICENSE
+Pods/Alamofire/README.md
+Pods/Alamofire/Source/AFError.swift
+Pods/Alamofire/Source/Alamofire.swift
+Pods/Alamofire/Source/DispatchQueue+Alamofire.swift
+Pods/Alamofire/Source/MultipartFormData.swift
+Pods/Alamofire/Source/NetworkReachabilityManager.swift
+Pods/Alamofire/Source/Notifications.swift
+Pods/Alamofire/Source/ParameterEncoding.swift
+Pods/Alamofire/Source/Request.swift
+Pods/Alamofire/Source/Response.swift
+Pods/Alamofire/Source/ResponseSerialization.swift
+Pods/Alamofire/Source/Result.swift
+Pods/Alamofire/Source/ServerTrustPolicy.swift
+Pods/Alamofire/Source/SessionDelegate.swift
+Pods/Alamofire/Source/SessionManager.swift
+Pods/Alamofire/Source/TaskDelegate.swift
+Pods/Alamofire/Source/Timeline.swift
+Pods/Alamofire/Source/Validation.swift
+Pods/Hero/LICENSE
+Pods/Hero/README.md
+Pods/Hero/Sources/HeroCompatible.swift
+Pods/Hero/Sources/HeroContext.swift
+Pods/Hero/Sources/HeroModifier+Advanced.swift
+Pods/Hero/Sources/HeroModifier+HeroStringConvertible.swift
+Pods/Hero/Sources/HeroModifier.swift
+Pods/Hero/Sources/HeroPlugin.swift
+Pods/Hero/Sources/HeroTargetState.swift
+Pods/Hero/Sources/HeroTypes.swift
+Pods/Hero/Sources/HeroViewControllerDelegate.swift
+Pods/Hero/Sources/SwiftSupport.swift
+Pods/Hero/Sources/Animator/HeroAnimatorViewContext.swift
+Pods/Hero/Sources/Animator/HeroCoreAnimationViewContext.swift
+Pods/Hero/Sources/Animator/HeroDefaultAnimator.swift
+Pods/Hero/Sources/Animator/HeroViewPropertyViewContext.swift
+Pods/Hero/Sources/Debug Plugin/HeroDebugPlugin.swift
+Pods/Hero/Sources/Debug Plugin/HeroDebugView.swift
+Pods/Hero/Sources/Extensions/Array+HeroModifier.swift
+Pods/Hero/Sources/Extensions/CALayer+Hero.swift
+Pods/Hero/Sources/Extensions/CAMediaTimingFunction+Hero.swift
+Pods/Hero/Sources/Extensions/CG+Hero.swift
+Pods/Hero/Sources/Extensions/DispatchQueue+Hero.swift
+Pods/Hero/Sources/Extensions/UIKit+Hero.swift
+Pods/Hero/Sources/Extensions/UIView+Hero.swift
+Pods/Hero/Sources/Extensions/UIViewController+Hero.swift
+Pods/Hero/Sources/Parser/HeroStringConvertible.swift
+Pods/Hero/Sources/Parser/Lexer.swift
+Pods/Hero/Sources/Parser/Nodes.swift
+Pods/Hero/Sources/Parser/Parser.swift
+Pods/Hero/Sources/Parser/Regex.swift
+Pods/Hero/Sources/Preprocessors/BasePreprocessor.swift
+Pods/Hero/Sources/Preprocessors/CascadePreprocessor.swift
+Pods/Hero/Sources/Preprocessors/ConditionalPreprocessor.swift
+Pods/Hero/Sources/Preprocessors/DefaultAnimationPreprocessor.swift
+Pods/Hero/Sources/Preprocessors/IgnoreSubviewModifiersPreprocessor.swift
+Pods/Hero/Sources/Preprocessors/MatchPreprocessor.swift
+Pods/Hero/Sources/Preprocessors/SourcePreprocessor.swift
+Pods/Hero/Sources/Transition/HeroProgressRunner.swift
+Pods/Hero/Sources/Transition/HeroTransition+Animate.swift
+Pods/Hero/Sources/Transition/HeroTransition+Complete.swift
+Pods/Hero/Sources/Transition/HeroTransition+CustomTransition.swift
+Pods/Hero/Sources/Transition/HeroTransition+Interactive.swift
+Pods/Hero/Sources/Transition/HeroTransition+Start.swift
+Pods/Hero/Sources/Transition/HeroTransition+UINavigationControllerDelegate.swift
+Pods/Hero/Sources/Transition/HeroTransition+UITabBarControllerDelegate.swift
+Pods/Hero/Sources/Transition/HeroTransition+UIViewControllerTransitioningDelegate.swift
+Pods/Hero/Sources/Transition/HeroTransition.swift
+Pods/Hero/Sources/Transition/HeroTransitionState.swift
+Pods/IGListKit/LICENSE.md
+Pods/IGListKit/README.md
+Pods/IGListKit/Source/IGListAdapter.h
+Pods/IGListKit/Source/IGListAdapter.m
+Pods/IGListKit/Source/IGListAdapterDataSource.h
+Pods/IGListKit/Source/IGListAdapterDelegate.h
+Pods/IGListKit/Source/IGListAdapterMoveDelegate.h
+Pods/IGListKit/Source/IGListAdapterUpdateListener.h
+Pods/IGListKit/Source/IGListAdapterUpdater.h
+Pods/IGListKit/Source/IGListAdapterUpdater.m
+Pods/IGListKit/Source/IGListAdapterUpdaterDelegate.h
+Pods/IGListKit/Source/IGListBatchContext.h
+Pods/IGListKit/Source/IGListBindable.h
+Pods/IGListKit/Source/IGListBindingSectionController.h
+Pods/IGListKit/Source/IGListBindingSectionController.m
+Pods/IGListKit/Source/IGListBindingSectionControllerDataSource.h
+Pods/IGListKit/Source/IGListBindingSectionControllerSelectionDelegate.h
+Pods/IGListKit/Source/IGListCollectionContext.h
+Pods/IGListKit/Source/IGListCollectionView.h
+Pods/IGListKit/Source/IGListCollectionView.m
+Pods/IGListKit/Source/IGListCollectionViewDelegateLayout.h
+Pods/IGListKit/Source/IGListCollectionViewLayout.h
+Pods/IGListKit/Source/IGListCollectionViewLayout.mm
+Pods/IGListKit/Source/IGListDisplayDelegate.h
+Pods/IGListKit/Source/IGListGenericSectionController.h
+Pods/IGListKit/Source/IGListGenericSectionController.m
+Pods/IGListKit/Source/IGListKit.h
+Pods/IGListKit/Source/IGListReloadDataUpdater.h
+Pods/IGListKit/Source/IGListReloadDataUpdater.m
+Pods/IGListKit/Source/IGListScrollDelegate.h
+Pods/IGListKit/Source/IGListSectionController.h
+Pods/IGListKit/Source/IGListSectionController.m
+Pods/IGListKit/Source/IGListSingleSectionController.h
+Pods/IGListKit/Source/IGListSingleSectionController.m
+Pods/IGListKit/Source/IGListStackedSectionController.h
+Pods/IGListKit/Source/IGListStackedSectionController.m
+Pods/IGListKit/Source/IGListSupplementaryViewSource.h
+Pods/IGListKit/Source/IGListTransitionDelegate.h
+Pods/IGListKit/Source/IGListUpdatingDelegate.h
+Pods/IGListKit/Source/IGListWorkingRangeDelegate.h
+Pods/IGListKit/Source/Common/IGListAssert.h
+Pods/IGListKit/Source/Common/IGListBatchUpdateData.h
+Pods/IGListKit/Source/Common/IGListBatchUpdateData.mm
+Pods/IGListKit/Source/Common/IGListCompatibility.h
+Pods/IGListKit/Source/Common/IGListDiff.h
+Pods/IGListKit/Source/Common/IGListDiff.mm
+Pods/IGListKit/Source/Common/IGListDiffable.h
+Pods/IGListKit/Source/Common/IGListDiffKit.h
+Pods/IGListKit/Source/Common/IGListExperiments.h
+Pods/IGListKit/Source/Common/IGListIndexPathResult.h
+Pods/IGListKit/Source/Common/IGListIndexPathResult.m
+Pods/IGListKit/Source/Common/IGListIndexSetResult.h
+Pods/IGListKit/Source/Common/IGListIndexSetResult.m
+Pods/IGListKit/Source/Common/IGListMacros.h
+Pods/IGListKit/Source/Common/IGListMoveIndex.h
+Pods/IGListKit/Source/Common/IGListMoveIndex.m
+Pods/IGListKit/Source/Common/IGListMoveIndexPath.h
+Pods/IGListKit/Source/Common/IGListMoveIndexPath.m
+Pods/IGListKit/Source/Common/NSNumber+IGListDiffable.h
+Pods/IGListKit/Source/Common/NSNumber+IGListDiffable.m
+Pods/IGListKit/Source/Common/NSString+IGListDiffable.h
+Pods/IGListKit/Source/Common/NSString+IGListDiffable.m
+Pods/IGListKit/Source/Common/Internal/IGListArrayUtilsInternal.h
+Pods/IGListKit/Source/Common/Internal/IGListIndexPathResultInternal.h
+Pods/IGListKit/Source/Common/Internal/IGListIndexSetResultInternal.h
+Pods/IGListKit/Source/Common/Internal/IGListMoveIndexInternal.h
+Pods/IGListKit/Source/Common/Internal/IGListMoveIndexPathInternal.h
+Pods/IGListKit/Source/Internal/IGListAdapter+DebugDescription.h
+Pods/IGListKit/Source/Internal/IGListAdapter+DebugDescription.m
+Pods/IGListKit/Source/Internal/IGListAdapter+UICollectionView.h
+Pods/IGListKit/Source/Internal/IGListAdapter+UICollectionView.m
+Pods/IGListKit/Source/Internal/IGListAdapterInternal.h
+Pods/IGListKit/Source/Internal/IGListAdapterProxy.h
+Pods/IGListKit/Source/Internal/IGListAdapterProxy.m
+Pods/IGListKit/Source/Internal/IGListAdapterUpdater+DebugDescription.h
+Pods/IGListKit/Source/Internal/IGListAdapterUpdater+DebugDescription.m
+Pods/IGListKit/Source/Internal/IGListAdapterUpdaterInternal.h
+Pods/IGListKit/Source/Internal/IGListBatchUpdateData+DebugDescription.h
+Pods/IGListKit/Source/Internal/IGListBatchUpdateData+DebugDescription.m
+Pods/IGListKit/Source/Internal/IGListBatchUpdates.h
+Pods/IGListKit/Source/Internal/IGListBatchUpdates.m
+Pods/IGListKit/Source/Internal/IGListBatchUpdateState.h
+Pods/IGListKit/Source/Internal/IGListBindingSectionController+DebugDescription.h
+Pods/IGListKit/Source/Internal/IGListBindingSectionController+DebugDescription.m
+Pods/IGListKit/Source/Internal/IGListCollectionViewLayoutInternal.h
+Pods/IGListKit/Source/Internal/IGListDebugger.h
+Pods/IGListKit/Source/Internal/IGListDebugger.m
+Pods/IGListKit/Source/Internal/IGListDebuggingUtilities.h
+Pods/IGListKit/Source/Internal/IGListDebuggingUtilities.m
+Pods/IGListKit/Source/Internal/IGListDisplayHandler.h
+Pods/IGListKit/Source/Internal/IGListDisplayHandler.m
+Pods/IGListKit/Source/Internal/IGListReloadIndexPath.h
+Pods/IGListKit/Source/Internal/IGListReloadIndexPath.m
+Pods/IGListKit/Source/Internal/IGListSectionControllerInternal.h
+Pods/IGListKit/Source/Internal/IGListSectionMap+DebugDescription.h
+Pods/IGListKit/Source/Internal/IGListSectionMap+DebugDescription.m
+Pods/IGListKit/Source/Internal/IGListSectionMap.h
+Pods/IGListKit/Source/Internal/IGListSectionMap.m
+Pods/IGListKit/Source/Internal/IGListStackedSectionControllerInternal.h
+Pods/IGListKit/Source/Internal/IGListWorkingRangeHandler.h
+Pods/IGListKit/Source/Internal/IGListWorkingRangeHandler.mm
+Pods/IGListKit/Source/Internal/UICollectionView+DebugDescription.h
+Pods/IGListKit/Source/Internal/UICollectionView+DebugDescription.m
+Pods/IGListKit/Source/Internal/UICollectionView+IGListBatchUpdateData.h
+Pods/IGListKit/Source/Internal/UICollectionView+IGListBatchUpdateData.m
+Pods/IGListKit/Source/Internal/UICollectionViewLayout+InteractiveReordering.h
+Pods/IGListKit/Source/Internal/UICollectionViewLayout+InteractiveReordering.m
+Pods/IGListKit/Source/Internal/UIScrollView+IGListKit.h
+Pods/IGListKit/Source/Internal/UIScrollView+IGListKit.m
+Pods/Moya/License.md
+Pods/Moya/Readme.md
+Pods/Moya/Sources/Moya/AnyEncodable.swift
+Pods/Moya/Sources/Moya/Cancellable.swift
+Pods/Moya/Sources/Moya/Endpoint.swift
+Pods/Moya/Sources/Moya/Image.swift
+Pods/Moya/Sources/Moya/Moya+Alamofire.swift
+Pods/Moya/Sources/Moya/MoyaError.swift
+Pods/Moya/Sources/Moya/MoyaProvider+Defaults.swift
+Pods/Moya/Sources/Moya/MoyaProvider+Internal.swift
+Pods/Moya/Sources/Moya/MoyaProvider.swift
+Pods/Moya/Sources/Moya/MultipartFormData.swift
+Pods/Moya/Sources/Moya/MultiTarget.swift
+Pods/Moya/Sources/Moya/Plugin.swift
+Pods/Moya/Sources/Moya/Response.swift
+Pods/Moya/Sources/Moya/TargetType.swift
+Pods/Moya/Sources/Moya/Task.swift
+Pods/Moya/Sources/Moya/URL+Moya.swift
+Pods/Moya/Sources/Moya/URLRequest+Encoding.swift
+Pods/Moya/Sources/Moya/ValidationType.swift
+Pods/Moya/Sources/Moya/Plugins/AccessTokenPlugin.swift
+Pods/Moya/Sources/Moya/Plugins/CredentialsPlugin.swift
+Pods/Moya/Sources/Moya/Plugins/NetworkActivityPlugin.swift
+Pods/Moya/Sources/Moya/Plugins/NetworkLoggerPlugin.swift
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/Alamofire.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/Hero.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/IGListKit.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/Moya.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/Pods-RickAndMortyApp.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/hamza.a.xcuserdatad/xcschemes/Result.xcscheme
+Pods/Result/LICENSE
+Pods/Result/README.md
+Pods/Result/Result/AnyError.swift
+Pods/Result/Result/NoError.swift
+Pods/Result/Result/Result.swift
+Pods/Result/Result/ResultProtocol.swift
+Pods/Target Support Files/Alamofire/Alamofire-dummy.m
+Pods/Target Support Files/Alamofire/Alamofire-Info.plist
+Pods/Target Support Files/Alamofire/Alamofire-prefix.pch
+Pods/Target Support Files/Alamofire/Alamofire-umbrella.h
+Pods/Target Support Files/Alamofire/Alamofire.modulemap
+Pods/Target Support Files/Alamofire/Alamofire.xcconfig
+Pods/Target Support Files/Hero/Hero-dummy.m
+Pods/Target Support Files/Hero/Hero-Info.plist
+Pods/Target Support Files/Hero/Hero-prefix.pch
+Pods/Target Support Files/Hero/Hero-umbrella.h
+Pods/Target Support Files/Hero/Hero.modulemap
+Pods/Target Support Files/Hero/Hero.xcconfig
+Pods/Target Support Files/IGListKit/IGListKit-dummy.m
+Pods/Target Support Files/IGListKit/IGListKit-Info.plist
+Pods/Target Support Files/IGListKit/IGListKit-prefix.pch
+Pods/Target Support Files/IGListKit/IGListKit-umbrella.h
+Pods/Target Support Files/IGListKit/IGListKit.modulemap
+Pods/Target Support Files/IGListKit/IGListKit.xcconfig
+Pods/Target Support Files/Moya/Moya-dummy.m
+Pods/Target Support Files/Moya/Moya-Info.plist
+Pods/Target Support Files/Moya/Moya-prefix.pch
+Pods/Target Support Files/Moya/Moya-umbrella.h
+Pods/Target Support Files/Moya/Moya.modulemap
+Pods/Target Support Files/Moya/Moya.xcconfig
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-acknowledgements.markdown
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-acknowledgements.plist
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-dummy.m
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-frameworks-Debug-input-files.xcfilelist
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-frameworks-Debug-output-files.xcfilelist
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-frameworks-Release-input-files.xcfilelist
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-frameworks-Release-output-files.xcfilelist
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-frameworks.sh
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-Info.plist
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp-umbrella.h
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.modulemap
+Pods/Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.release.xcconfig
+Pods/Target Support Files/Result/Result-dummy.m
+Pods/Target Support Files/Result/Result-Info.plist
+Pods/Target Support Files/Result/Result-prefix.pch
+Pods/Target Support Files/Result/Result-umbrella.h
+Pods/Target Support Files/Result/Result.modulemap
+Pods/Target Support Files/Result/Result.xcconfig
