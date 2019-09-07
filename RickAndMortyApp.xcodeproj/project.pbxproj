@@ -91,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				851191842323DBED00760E12 /* CoreData */,
-				851191872324100B00760E12 /* Model */,
 				8511917E2323D73F00760E12 /* Service */,
 				851191692323D46700760E12 /* AppDelegate.swift */,
 				8511916B2323D46700760E12 /* ViewController.swift */,
@@ -99,7 +98,6 @@
 				851191732323D46800760E12 /* Assets.xcassets */,
 				851191752323D46800760E12 /* LaunchScreen.storyboard */,
 				851191782323D46800760E12 /* Info.plist */,
-				851191702323D46700760E12 /* RickAndMortyApp.xcdatamodeld */,
 			);
 			path = RickAndMortyApp;
 			sourceTree = "<group>";
@@ -122,16 +120,10 @@
 				8511918B232410D300760E12 /* Location+CoreDataProperties.swift */,
 				85119188232410D300760E12 /* Origin+CoreDataClass.swift */,
 				85119189232410D300760E12 /* Origin+CoreDataProperties.swift */,
+				851191702323D46700760E12 /* RickAndMortyApp.xcdatamodeld */,
 				851191852323DC0C00760E12 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		851191872324100B00760E12 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D77EE49ECCA7551CF48AFDA0 /* Frameworks */ = {

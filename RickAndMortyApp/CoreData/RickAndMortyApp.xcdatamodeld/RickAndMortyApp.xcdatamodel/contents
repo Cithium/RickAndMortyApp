@@ -8,6 +8,11 @@
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="locationCharacters" inverseEntity="Location" syncable="YES"/>
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Origin" inverseName="originCharacters" inverseEntity="Origin" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Location" representedClassName=".Location" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +30,7 @@
         <memberEntity name="Origin"/>
     </configuration>
     <elements>
-        <element name="Character" positionX="-54" positionY="-9" width="128" height="150"/>
+        <element name="Character" positionX="-54" positionY="-9" width="128" height="148"/>
         <element name="Location" positionX="-60.30078125" positionY="284.75" width="128" height="90"/>
         <element name="Origin" positionX="222.01953125" positionY="18.28515625" width="128" height="90"/>
     </elements>
