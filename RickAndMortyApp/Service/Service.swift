@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum Service {
-    case getCharacters
+    case getCharacters(page: String)
 }
 
 extension Service: TargetType {
@@ -31,8 +31,8 @@ extension Service: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .getCharacters:
-            return .requestPlain
+        case .getCharacters(let page):
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.queryString)
         }
     }
     

@@ -10,5 +10,5 @@ import Foundation
 import PromiseKit
 
 protocol Networkable {
-    func getCharacters() -> Promise<Info>
+    func getCharacters(page: String) -> Promise<Info>
 }

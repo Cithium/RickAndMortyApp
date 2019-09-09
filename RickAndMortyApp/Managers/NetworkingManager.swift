@@ -11,14 +11,12 @@ import Moya
 import PromiseKit
 
 class NetworkingManger: Networkable {
-    
     static let shared = NetworkingManger()
     var service = MoyaProvider<Service>()
     
-    func getCharacters() -> Promise<Info> {
-        
+    func getCharacters(page: String) -> Promise<Info> {
         return Promise { seal in
-            service.request(.getCharacters) { (response) in
+            service.request(.getCharacters(page: page)) { (response) in
                 switch (response) {
                 case let .success(response):
                     do {
