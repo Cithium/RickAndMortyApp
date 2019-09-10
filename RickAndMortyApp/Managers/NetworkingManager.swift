@@ -23,7 +23,7 @@ class NetworkingManger: Networkable {
                         _ = try response.filterSuccessfulStatusCodes()
                         let result = try JSONDecoder().decode(JSONCharacterResult.self, from: response.data)
                         
-                        //    result.results to Coredata
+                        result.results.forEach { Character.fromJSONToCoreData(jsonPlaceholder: $0) }
                         seal.fulfill(result.info)
                     } catch {
                         seal.reject(error)

@@ -52,7 +52,7 @@ class CoreDataManager {
         }
     }
     
-    /*
+    
     func fetchLaunches() -> [Character] {
         let context = persistentContainer.viewContext
         
@@ -64,5 +64,5 @@ class CoreDataManager {
             print("Failed to fetch characters:", fetchErr)
             return []
         }
-    } */
+    } 
 }

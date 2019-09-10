@@ -15,7 +15,10 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Location" representedClassName=".Location" syncable="YES">
+        <attribute name="dimension" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="residents" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="locationCharacters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="location" inverseEntity="Character" syncable="YES"/>
     </entity>
@@ -31,7 +34,7 @@
     </configuration>
     <elements>
         <element name="Character" positionX="-54" positionY="-9" width="128" height="148"/>
-        <element name="Location" positionX="-60.30078125" positionY="284.75" width="128" height="90"/>
+        <element name="Location" positionX="-60.30078125" positionY="284.75" width="128" height="133"/>
         <element name="Origin" positionX="222.01953125" positionY="18.28515625" width="128" height="90"/>
     </elements>
 </model>

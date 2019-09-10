@@ -8,15 +8,23 @@
 
 import UIKit
 import Moya
+import PromiseKit
 
 class ViewController: UIViewController {
     
-    var networkingManager = NetworkingManger.shared
+    let networkingManager = NetworkingManger.shared
+    var info: Info?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        firstly {
+            networkingManager.getCharacters(page: "")
+        }.done { (info) in
+            self.info = info
+        }.catch { (error) in
+            print(error.localizedDescription)
+        }
     }
 
 

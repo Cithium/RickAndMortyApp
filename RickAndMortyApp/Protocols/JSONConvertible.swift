@@ -9,5 +9,5 @@
 import Foundation
 
 protocol JSONConvertible {
-    static func fromJSONToCoreData(jsonData: Data)
+    static func fromJSONToCoreData(jsonPlaceholder: Decodable)
 }
