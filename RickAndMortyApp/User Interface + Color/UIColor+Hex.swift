@@ -14,7 +14,6 @@ extension UIColor {
     @nonobjc public static var darkBlue          =   UIColor(rgba: "#131D36")
 }
 
-
 extension UIColor {
     public convenience init(_ hex: UInt32, alpha: CGFloat = 1) {
         let red     = CGFloat((hex & 0xFF0000) >> 16) / CGFloat(255)
