@@ -6,7 +6,6 @@ target 'RickAndMortyApp' do
   use_frameworks!
 
   pod 'Moya', '~> 13.0'
-  pod 'IGListKit', '~> 3.4.0'
   pod 'Hero'
   pod 'PromiseKit'
 
