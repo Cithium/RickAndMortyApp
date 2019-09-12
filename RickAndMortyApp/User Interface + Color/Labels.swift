@@ -38,7 +38,7 @@ class WhiteLCDLabel: UILabel {
     
     func configure() {
         textColor = UIColor.white
-        font = UIFont(name: "LCD_Solid", size: 13.0)
+        font = UIFont(name: "LCD Solid", size: 13.0)
     }
 }
 
@@ -71,6 +71,6 @@ class GreenLCDLabel: UILabel {
     
     func configure() {
         textColor = UIColor.neonGreen
-        font = UIFont(name: "LCD_Solid", size: 16.0)
+        font = UIFont(name: "LCD Solid", size: 16.0)
     }
 }

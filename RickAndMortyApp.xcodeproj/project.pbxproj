@@ -28,7 +28,6 @@
 		851191C92327B0DB00760E12 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851191C32327B0DA00760E12 /* Character+CoreDataClass.swift */; };
 		851191CA2327B0DB00760E12 /* Origin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851191C42327B0DA00760E12 /* Origin+CoreDataProperties.swift */; };
 		851191CB2327B0DB00760E12 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851191C52327B0DA00760E12 /* Location+CoreDataClass.swift */; };
-		851191D02327E09F00760E12 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851191CF2327E09F00760E12 /* CharacterViewModel.swift */; };
 		851F5A50232A45C700C59D49 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5A4F232A45C700C59D49 /* Views.swift */; };
 		851F5A52232A486200C59D49 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5A51232A486200C59D49 /* UIColor+Hex.swift */; };
 		851F5A55232A63FE00C59D49 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5A54232A63FE00C59D49 /* Labels.swift */; };
@@ -60,7 +59,6 @@
 		851191C32327B0DA00760E12 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataClass.swift"; sourceTree = "<group>"; };
 		851191C42327B0DA00760E12 /* Origin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Origin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		851191C52327B0DA00760E12 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
-		851191CF2327E09F00760E12 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		851F5A4F232A45C700C59D49 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		851F5A51232A486200C59D49 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		851F5A53232A559600C59D49 /* LCD_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LCD_Solid.ttf; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			children = (
 				851191A52327A96800760E12 /* Core Data */,
 				851191A62327A99C00760E12 /* JSONPlaceholders */,
-				851191CE2327E08300760E12 /* ViewModel+IGListKit */,
 				8511919D2324188A00760E12 /* Info.swift */,
 			);
 			path = Model;
@@ -186,14 +183,6 @@
 				8511919B232417AE00760E12 /* JSONPlaceholders.swift */,
 			);
 			path = JSONPlaceholders;
-			sourceTree = "<group>";
-		};
-		851191CE2327E08300760E12 /* ViewModel+IGListKit */ = {
-			isa = PBXGroup;
-			children = (
-				851191CF2327E09F00760E12 /* CharacterViewModel.swift */,
-			);
-			path = "ViewModel+IGListKit";
 			sourceTree = "<group>";
 		};
 		851F5A4E232A448100C59D49 /* User Interface + Color */ = {
@@ -344,7 +333,6 @@
 				851191802323D7E900760E12 /* Service.swift in Sources */,
 				851F5A50232A45C700C59D49 /* Views.swift in Sources */,
 				851191C72327B0DB00760E12 /* Character+CoreDataProperties.swift in Sources */,
-				851191D02327E09F00760E12 /* CharacterViewModel.swift in Sources */,
 				8511919C232417AE00760E12 /* JSONPlaceholders.swift in Sources */,
 				851191962324138100760E12 /* JSONConvertible.swift in Sources */,
 				851191722323D46700760E12 /* RickAndMortyApp.xcdatamodeld in Sources */,
@@ -500,7 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6N8V263482;
+				DEVELOPMENT_TEAM = 5J9V6AP2FM;
 				INFOPLIST_FILE = RickAndMortyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -520,7 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6N8V263482;
+				DEVELOPMENT_TEAM = 5J9V6AP2FM;
 				INFOPLIST_FILE = RickAndMortyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

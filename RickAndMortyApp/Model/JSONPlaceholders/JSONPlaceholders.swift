@@ -26,6 +26,7 @@ struct JSONCharacter: Decodable {
     var episode: [String]
     var location: JSONLocation
     var origin: JSONOrigin
+    var image: String
 }
 
 struct JSONLocation: Decodable {

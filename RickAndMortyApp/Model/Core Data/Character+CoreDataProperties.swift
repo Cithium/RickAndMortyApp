@@ -23,5 +23,6 @@ extension Character {
     @NSManaged public var episode: [String]?
     @NSManaged public var location: Location?
     @NSManaged public var origin: Origin?
+    @NSManaged public var image: String?
 
 }

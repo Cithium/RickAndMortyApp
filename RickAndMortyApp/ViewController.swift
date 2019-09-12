@@ -10,6 +10,7 @@ import UIKit
 import Moya
 import CoreData
 import PromiseKit
+import Nuke
 
 class TableViewController: UITableViewController {
     
@@ -41,6 +42,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
         
         firstly {
             networkingManager.getCharacters(page: "")
@@ -101,14 +103,20 @@ extension TableViewController {
         return characterFetchResultController.sections![section].numberOfObjects
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 220
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
         
-        let company = characterFetchResultController.object(at: indexPath)
+        let character = characterFetchResultController.object(at: indexPath)
         
-        //        cell.textLabel?.text = company.name
+        cell.character = character
         
-      //  cell.company = company
+        if let stringURL = character.image, let url = URL(string: stringURL) {
+            Nuke.loadImage(with: url, into: cell.characterImageView)
+        }
         
         return cell
     }

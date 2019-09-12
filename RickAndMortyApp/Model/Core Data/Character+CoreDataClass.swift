@@ -20,6 +20,7 @@ public class Character: NSManagedObject, JSONConvertible {
         character.status    = jsonCharacter.status
         character.species   = jsonCharacter.species
         character.episode   = jsonCharacter.episode
+        character.image     = jsonCharacter.image
         
         let jsonLocation    = jsonCharacter.location
         let location        = Location(context: CoreDataManager.shared.backgroundContext)

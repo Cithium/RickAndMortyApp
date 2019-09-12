@@ -8,5 +8,6 @@ target 'RickAndMortyApp' do
   pod 'Moya', '~> 13.0'
   pod 'Hero'
   pod 'PromiseKit'
+  pod 'Nuke'
 
 end
