@@ -43,6 +43,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.black
+        title = "Characters"
         
         firstly {
             networkingManager.getCharacters(page: "")
@@ -104,13 +106,14 @@ extension TableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 200
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
         
         let character = characterFetchResultController.object(at: indexPath)
+        
         
         cell.character = character
         

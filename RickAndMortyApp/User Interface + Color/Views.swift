@@ -40,7 +40,7 @@ class RoundedCardView: UIView {
     func configure() {
         backgroundColor = UIColor.darkBlue
         layer.cornerRadius = 20.0
-        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowColor = UIColor.neonGreen.cgColor
         layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         layer.shadowRadius = 12.0
         layer.shadowOpacity = 0.7

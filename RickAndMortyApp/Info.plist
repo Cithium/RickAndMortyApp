@@ -37,6 +37,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>LCD_Solid.ttf</string>
+		<string>GetSchwifty.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
