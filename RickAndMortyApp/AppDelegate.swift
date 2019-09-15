@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 11.0, *) {
             UINavigationBar.appearance().prefersLargeTitles = true
             UINavigationBar.appearance().largeTitleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.white,
-                NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 40.0),
+                NSAttributedString.Key.foregroundColor: UIColor.neonBlue,
+                NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 44.0),
                 NSAttributedString.Key.strokeColor: UIColor.neonGreen,
                 NSAttributedString.Key.strokeWidth: -2.0
                 
@@ -45,10 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ]
         }
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 24.0),
+            NSAttributedString.Key.foregroundColor: UIColor.neonBlue,
+            NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 26.0),
             NSAttributedString.Key.strokeColor: UIColor.neonGreen,
-            NSAttributedString.Key.strokeWidth: -1.0
+            NSAttributedString.Key.strokeWidth: -1.5
         ]
         
         return true

@@ -40,10 +40,18 @@ class TableViewController: UITableViewController {
         return fetchResultController
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let imageView = UIImageView(image: UIImage(named: "stars"))
+        imageView.contentMode = .scaleAspectFill
+        self.tableView.backgroundView = imageView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.black
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = "Characters"
         
         firstly {
@@ -97,6 +105,15 @@ extension TableViewController {
         return sectionName
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
+        cell.layer.transform = rotationTransform
+        
+        UIView.animate(withDuration: 0.5) {
+            cell.layer.transform = CATransform3DIdentity
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return characterFetchResultController.sections?.count ?? 0
     }
@@ -113,8 +130,6 @@ extension TableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
         
         let character = characterFetchResultController.object(at: indexPath)
-        
-        
         cell.character = character
         
         if let stringURL = character.image, let url = URL(string: stringURL) {
