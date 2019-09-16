@@ -71,6 +71,6 @@ class GreenLCDLabel: UILabel {
     
     func configure() {
         textColor = UIColor.neonGreen
-        font = UIFont(name: "LCD Solid", size: 14.5)
+        font = UIFont(name: "LCD Solid", size: 13.5)
     }
 }

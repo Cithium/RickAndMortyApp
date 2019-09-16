@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSAttributedString.Key.foregroundColor: UIColor.neonBlue,
                 NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 44.0),
                 NSAttributedString.Key.strokeColor: UIColor.neonGreen,
-                NSAttributedString.Key.strokeWidth: -2.0
+                NSAttributedString.Key.strokeWidth: -2.0,
                 
               //  NSAttributedString.Key.shadow
             ]

@@ -10,6 +10,42 @@ import Foundation
 import UIKit
 
 @IBDesignable
+class EmptyHeartImageView: UIImageView {
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configure()
+    }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        configure()
+    }
+    
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+    
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        configure()
+    }
+    
+    func configure() {
+        let heartImage = UIImage(named: "emptyHeart")?.withRenderingMode(.alwaysTemplate)
+        image = heartImage
+        tintColor = UIColor.neonGreen
+    }
+}
+
+
+@IBDesignable
 class RoundedCardView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,3 +118,4 @@ class RoundedImageView: UIImageView {
         layer.borderColor = UIColor.neonGreen.cgColor
     }
 }
+
