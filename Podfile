@@ -9,5 +9,6 @@ target 'RickAndMortyApp' do
   pod 'Hero'
   pod 'PromiseKit'
   pod 'Nuke'
+  pod 'lottie-ios'
 
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gZu-yL-SJV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dDL-1Q-eaF">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -174,6 +174,33 @@
                                     <outlet property="nameLabel" destination="Af0-7b-Hdp" id="hxs-73-o1W"/>
                                     <outlet property="statusLabel" destination="1cX-J9-h2g" id="LTW-AQ-sl2"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadingCell" rowHeight="100" id="u0o-QN-JFg" customClass="LoadingCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u0o-QN-JFg" id="hC3-hM-dGd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RN-gV-pzX" customClass="LottieAnimationView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                            <rect key="frame" x="169.5" y="12.5" width="75" height="75"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="doe-e8-cfo"/>
+                                                <constraint firstAttribute="height" constant="75" id="rEH-Zo-Bmi"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="resourceName" value="galaxy-orbit"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="2RN-gV-pzX" firstAttribute="centerX" secondItem="hC3-hM-dGd" secondAttribute="centerX" id="sV1-Xj-4m5"/>
+                                        <constraint firstItem="2RN-gV-pzX" firstAttribute="centerY" secondItem="hC3-hM-dGd" secondAttribute="centerY" id="xQs-61-jEs"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>

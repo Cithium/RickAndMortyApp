@@ -36,6 +36,7 @@
 		8532A23A2330E51B00BBA461 /* GetSchwifty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8532A2392330E51A00BBA461 /* GetSchwifty.ttf */; };
 		8532A2442331211B00BBA461 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8532A2432331211B00BBA461 /* TestViewController.swift */; };
 		8532A2462331244800BBA461 /* galaxy-orbit.json in Resources */ = {isa = PBXBuildFile; fileRef = 8532A2452331244800BBA461 /* galaxy-orbit.json */; };
+		85D96AD72332BC1F009741E2 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96AD62332BC1F009741E2 /* LoadingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		8532A2392330E51A00BBA461 /* GetSchwifty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GetSchwifty.ttf; sourceTree = "<group>"; };
 		8532A2432331211B00BBA461 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8532A2452331244800BBA461 /* galaxy-orbit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "galaxy-orbit.json"; sourceTree = "<group>"; };
+		85D96AD62332BC1F009741E2 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		B2B16DFCD75528829389EF91 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CD7744973B193F7FB567C5E9 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 				851F5A54232A63FE00C59D49 /* Labels.swift */,
 				851F5A51232A486200C59D49 /* UIColor+Hex.swift */,
 				851F5A57232A71FB00C59D49 /* CharacterCell.swift */,
+				85D96AD62332BC1F009741E2 /* LoadingCell.swift */,
 			);
 			path = "User Interface + Color";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				851F5A50232A45C700C59D49 /* Views.swift in Sources */,
 				851191C72327B0DB00760E12 /* Character+CoreDataProperties.swift in Sources */,
 				8511919C232417AE00760E12 /* JSONPlaceholders.swift in Sources */,
+				85D96AD72332BC1F009741E2 /* LoadingCell.swift in Sources */,
 				851191962324138100760E12 /* JSONConvertible.swift in Sources */,
 				851191722323D46700760E12 /* RickAndMortyApp.xcdatamodeld in Sources */,
 				851F5A52232A486200C59D49 /* UIColor+Hex.swift in Sources */,

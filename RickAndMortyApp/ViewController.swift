@@ -15,30 +15,11 @@ import Nuke
 class TableViewController: UITableViewController {
     
     let networkingManager = NetworkingManger.shared
-    var info: Info?
+    let coreDataManager = CoreDataManager.shared
+    var loading: Bool = false
+    var info: Info!
     
-    private lazy var characterFetchResultController: NSFetchedResultsController<Character> = {
-        let fetchRequest: NSFetchRequest<Character> = NSFetchRequest(entityName: "Character")
-        
-        let request: NSFetchRequest<Character> = Character.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        
-        let fetchResultController = NSFetchedResultsController(
-            fetchRequest: request,
-            managedObjectContext: CoreDataManager.shared.mainContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-
-        fetchResultController.delegate = self
-        
-        do {
-            try fetchResultController.performFetch()
-        } catch let error {
-            print(error)
-        }
-        
-        return fetchResultController
-    }()
+    var characters =  [Character]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,103 +32,117 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.black
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = "Characters"
         
-        firstly {
-            networkingManager.getCharacters(page: "")
-        }.done { (info) in
-            self.info = info
-        }.catch { (error) in
-            print(error.localizedDescription)
-        }
+        
+            firstly {
+                networkingManager.getCharacters(page: "")
+            }.map { info in
+                self.info = info
+            }.then {
+                self.coreDataManager.fetchCharacters()
+            }.done { (chars) in
+                self.characters = chars
+                self.tableView.reloadData()
+            }.catch { error in
+                print(error.localizedDescription)
+            }
     }
 }
 
-extension TableViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .move:
-            break
-        case .update:
-            break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
-        case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
-        case .update:
-            tableView.reloadRows(at: [indexPath!], with: .fade)
-        case .move:
-            tableView.moveRow(at: indexPath!, to: newIndexPath!)
-        }
-    }
-}
 
 extension TableViewController {
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, sectionIndexTitleForSectionName sectionName: String) -> String? {
-        return sectionName
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
-        cell.layer.transform = rotationTransform
-        
-        UIView.animate(withDuration: 0.5) {
-            cell.layer.transform = CATransform3DIdentity
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
+            
+            let character = characters[indexPath.row]
+            cell.character = character
+            
+            if let stringURL = character.image, let url = URL(string: stringURL) {
+                Nuke.loadImage(with: url, into: cell.characterImageView)
+            }
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "loadingCell", for: indexPath) as! LoadingCell
+            return cell
         }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return characterFetchResultController.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characterFetchResultController.sections![section].numberOfObjects
+        if section == 0 {
+            return characters.count
+        } else if section == 1 && loading {
+            return 1
+        }
+        return 0
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
-        
-        let character = characterFetchResultController.object(at: indexPath)
-        cell.character = character
-        
-        if let stringURL = character.image, let url = URL(string: stringURL) {
-            Nuke.loadImage(with: url, into: cell.characterImageView)
+        if (indexPath.section == 0) {
+            return 200
+        } else {
+            return 100
         }
         
-        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (cell is CharacterCell) {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
+            cell.layer.transform = rotationTransform
+            
+            UIView.animate(withDuration: 0.5) {
+                cell.layer.transform = CATransform3DIdentity
+            }
+        }
+        
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
         
-        let employeesListController = EmployeesController()
-        employeesListController.company = fetchedResultsController.object(at: indexPath)
+        if (offsetY > contentHeight - scrollView.frame.height) {
+            if (!loading) {
+                fetchMoreCharacters()
+            }
+        }
+    }
+    
+    
+    
+    func fetchMoreCharacters() {
+        loading = true
         
-        navigationController?.pushViewController(employeesListController, animated: true)
-        
-    } */
+            firstly {
+                networkingManager.getCharacters(page: info.nextPage)
+            }.map { info in
+                self.info = info
+            }.then {
+                self.coreDataManager.fetchCharacters()
+            }.done { (chars) in
+                let filtered = chars.filter { !self.characters.contains($0) }
+                self.characters.append(contentsOf: filtered)
+                
+                UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                    self.tableView.reloadData()
+                }, completion: { (_) in
+                    self.loading = false
+                })
+                
+            }.catch { error in
+                print(error.localizedDescription)
+            }
+    }
 }
 
 

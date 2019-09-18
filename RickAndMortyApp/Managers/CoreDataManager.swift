@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import PromiseKit
 
 class CoreDataManager {
     
@@ -53,16 +54,20 @@ class CoreDataManager {
     }
     
     
-    func fetchLaunches() -> [Character] {
-        let context = persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<Character>(entityName: "Character")
-        do {
-            let companies = try context.fetch(fetchRequest)
-            return companies
-        } catch let fetchErr {
-            print("Failed to fetch characters:", fetchErr)
-            return []
+    func fetchCharacters() -> Promise<[Character]> {
+        return Promise { seal in
+            let context = persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<Character>(entityName: "Character")
+            do {
+                let characters = try context.fetch(fetchRequest)
+                seal.fulfill(characters)
+            } catch let fetchErr {
+                print("Failed to fetch characters:", fetchErr)
+                seal.reject(fetchErr)
+            }
+            
         }
+        
     } 
 }
