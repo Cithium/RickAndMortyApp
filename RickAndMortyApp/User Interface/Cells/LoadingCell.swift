@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 class LoadingCell: UITableViewCell {
+    @IBOutlet weak var lottieAnimation: LottieAnimationView!
+    
+    var loadingToken: String? {
+        didSet {
+            lottieAnimation.playAnimation()
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor.clear

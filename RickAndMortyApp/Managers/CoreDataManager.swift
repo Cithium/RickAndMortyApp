@@ -53,7 +53,6 @@ class CoreDataManager {
         }
     }
     
-    
     func fetchCharacters() -> Promise<[Character]> {
         return Promise { seal in
             let context = persistentContainer.viewContext
@@ -68,6 +67,22 @@ class CoreDataManager {
             }
             
         }
-        
-    } 
+    }
+    
+    func deleteCharacters() -> Promise<Void> {
+        return Promise { seal in
+            let context = persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do {
+                try context.execute(deleteRequest)
+                save()
+                seal.fulfill(())
+            } catch let error {
+                print("Failed to delete characters:", error)
+                seal.reject(error)
+            }
+        }
+    }
 }

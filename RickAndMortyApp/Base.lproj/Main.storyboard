@@ -175,19 +175,19 @@
                                     <outlet property="statusLabel" destination="1cX-J9-h2g" id="LTW-AQ-sl2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadingCell" rowHeight="100" id="u0o-QN-JFg" customClass="LoadingCell" customModule="RickAndMortyApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="228" width="414" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadingCell" rowHeight="50" id="u0o-QN-JFg" customClass="LoadingCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u0o-QN-JFg" id="hC3-hM-dGd">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RN-gV-pzX" customClass="LottieAnimationView" customModule="RickAndMortyApp" customModuleProvider="target">
-                                            <rect key="frame" x="169.5" y="12.5" width="75" height="75"/>
+                                            <rect key="frame" x="182" y="-0.5" width="50" height="50.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="doe-e8-cfo"/>
-                                                <constraint firstAttribute="height" constant="75" id="rEH-Zo-Bmi"/>
+                                                <constraint firstAttribute="width" constant="50" id="doe-e8-cfo"/>
+                                                <constraint firstAttribute="height" constant="50" id="rEH-Zo-Bmi"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="resourceName" value="galaxy-orbit"/>
@@ -201,6 +201,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="lottieAnimation" destination="2RN-gV-pzX" id="C4f-An-9Dn"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

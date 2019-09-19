@@ -54,6 +54,27 @@ class LottieAnimationView: CustomView {
 }
 
 @IBDesignable
+
+class CustomRefreshControl: UIRefreshControl {
+    override init() {
+        super.init(frame: .zero)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupView() {
+        tintColor = UIColor.neonGreen
+        attributedTitle = NSAttributedString(string: "Refreshing character list...", attributes: [
+            NSAttributedString.Key.foregroundColor : UIColor.neonGreen,
+            NSAttributedString.Key.font: UIFont(name: "LCD Solid", size: 10.0)
+        ])
+    }
+}
+
+@IBDesignable
 class EmptyHeartImageView: CustomImageView {
     override func configure() {
         let heartImage = UIImage(named: "emptyHeart")?.withRenderingMode(.alwaysTemplate)

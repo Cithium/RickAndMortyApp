@@ -21,6 +21,36 @@ class TableViewController: UITableViewController {
     
     var characters =  [Character]()
     
+    private let customRefreshControl = CustomRefreshControl()
+    
+    @objc func beginRefreshing() {
+            firstly {
+                self.coreDataManager.deleteCharacters()
+            }.then {
+                 self.networkingManager.getCharacters(page: "")
+            }.map { info in
+                self.info = info
+            }.then {
+                self.coreDataManager.fetchCharacters()
+            }.done { (chars) in
+                self.characters = chars
+                self.tableView.reloadData()
+                self.loading = false
+            }.ensure {
+                self.endRefreshing()
+            }.catch { error in
+                print(error.localizedDescription)
+        }
+    }
+    
+    func endRefreshing() {
+        guard customRefreshControl.isRefreshing else {
+            return
+        }
+        
+        customRefreshControl.endRefreshing()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let imageView = UIImageView(image: UIImage(named: "stars"))
@@ -33,10 +63,21 @@ class TableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.black
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = "Characters"
+        extendedLayoutIncludesOpaqueBars = true
         
+        let spinner = LottieAnimationView()
+        spinner.resourceName = "galaxy-orbit"
+        spinner.autoPlay = true
+        spinner.playAnimation()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+    
+        self.tableView.tableFooterView = spinner
+        self.tableView.tableFooterView?.isHidden = true
         
+        self.customRefreshControl.addTarget(self, action: #selector(beginRefreshing), for: .valueChanged)
+        self.tableView.refreshControl = customRefreshControl
+
             firstly {
                 networkingManager.getCharacters(page: "")
             }.map { info in
@@ -56,7 +97,6 @@ class TableViewController: UITableViewController {
 extension TableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
             
             let character = characters[indexPath.row]
@@ -67,44 +107,27 @@ extension TableViewController {
             }
             
             return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "loadingCell", for: indexPath) as! LoadingCell
-            return cell
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return characters.count
-        } else if section == 1 && loading {
-            return 1
-        }
-        return 0
+        return characters.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.section == 0) {
-            return 200
-        } else {
-            return 100
-        }
-        
+        return 200
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (cell is CharacterCell) {
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
-            cell.layer.transform = rotationTransform
-            
-            UIView.animate(withDuration: 0.5) {
-                cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 0
+            UIView.animate(withDuration: 0.75) {
+                cell.alpha = 1.0
             }
         }
-        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -118,30 +141,43 @@ extension TableViewController {
         }
     }
     
-    
-    
     func fetchMoreCharacters() {
+        guard let _ = self.info else { return }
         loading = true
+        self.tableView.tableFooterView?.isHidden = false
         
-            firstly {
-                networkingManager.getCharacters(page: info.nextPage)
-            }.map { info in
-                self.info = info
-            }.then {
-                self.coreDataManager.fetchCharacters()
-            }.done { (chars) in
-                let filtered = chars.filter { !self.characters.contains($0) }
-                self.characters.append(contentsOf: filtered)
-                
-                UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                    self.tableView.reloadData()
-                }, completion: { (_) in
-                    self.loading = false
-                })
-                
-            }.catch { error in
-                print(error.localizedDescription)
-            }
+      //  DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                firstly {
+                    self.networkingManager.getCharacters(page: self.info.nextPage)
+                }.map { info in
+                    self.info = info
+                }.then {
+                    self.coreDataManager.fetchCharacters()
+                }.done { (chars) in
+                    let filtered = chars.filter { !self.characters.contains($0) }
+                    self.characters.append(contentsOf: filtered)
+                    
+                    let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
+                    
+                    UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                        self.tableView.reloadData()
+                        self.tableView.scrollToLast(row: lastRow)
+                    }, completion: { (_) in
+                        self.loading = false
+                    })
+                }.ensure {
+                    self.tableView.tableFooterView?.isHidden = true
+                }.catch { error in
+                    print(error.localizedDescription)
+                }
+        //}
+    }
+}
+
+extension UITableView {
+    func scrollToLast(row: Int) {
+        let indexPath = IndexPath(row: row, section: 0);
+        scrollToRow(at: indexPath, at: .middle, animated: false)
     }
 }
 
