@@ -12,7 +12,7 @@ import CoreData
 import PromiseKit
 import Nuke
 
-class TableViewController: UITableViewController {
+class CharacterTableViewController: BaseTableViewController {
     
     let networkingManager = NetworkingManger.shared
     let coreDataManager = CoreDataManager.shared
@@ -23,11 +23,35 @@ class TableViewController: UITableViewController {
     
     private let customRefreshControl = CustomRefreshControl()
     
-    @objc func beginRefreshing() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "Characters"
+        setupViews()
+
             firstly {
-                self.coreDataManager.deleteCharacters()
+                networkingManager.getCharacters(page: "")
+            }.map { info in
+                self.info = info
             }.then {
-                 self.networkingManager.getCharacters(page: "")
+                self.coreDataManager.fetchCharacters()
+            }.done { (chars) in
+                self.characters = chars
+                self.tableView.reloadData()
+            }.catch { error in
+                print(error.localizedDescription)
+            }
+    }
+    
+    @objc func beginRefreshing() {
+        
+        firstly {
+            self.coreDataManager.deleteCharacters()
+            }.then {
+                self.networkingManager.getCharacters(page: "")
             }.map { info in
                 self.info = info
             }.then {
@@ -50,55 +74,13 @@ class TableViewController: UITableViewController {
         
         customRefreshControl.endRefreshing()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let imageView = UIImageView(image: UIImage(named: "stars"))
-        imageView.contentMode = .scaleAspectFill
-        self.tableView.backgroundView = imageView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.black
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        title = "Characters"
-        extendedLayoutIncludesOpaqueBars = true
-        
-        let spinner = LottieAnimationView()
-        spinner.resourceName = "galaxy-orbit"
-        spinner.autoPlay = true
-        spinner.playAnimation()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-    
-        self.tableView.tableFooterView = spinner
-        self.tableView.tableFooterView?.isHidden = true
-        
-        self.customRefreshControl.addTarget(self, action: #selector(beginRefreshing), for: .valueChanged)
-        self.tableView.refreshControl = customRefreshControl
-
-            firstly {
-                networkingManager.getCharacters(page: "")
-            }.map { info in
-                self.info = info
-            }.then {
-                self.coreDataManager.fetchCharacters()
-            }.done { (chars) in
-                self.characters = chars
-                self.tableView.reloadData()
-            }.catch { error in
-                print(error.localizedDescription)
-            }
-    }
 }
 
-
-extension TableViewController {
-
+extension CharacterTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
-            
+            cell.contentView.alpha = 0
+        
             let character = characters[indexPath.row]
             cell.character = character
             
@@ -123,10 +105,9 @@ extension TableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (cell is CharacterCell) {
-            cell.alpha = 0
-            UIView.animate(withDuration: 0.75) {
-                cell.alpha = 1.0
-            }
+            UIView.animate(withDuration: 0.65, delay: 0.0, options: .allowUserInteraction, animations: {
+                cell.contentView.alpha = 1.0
+            }, completion: nil)
         }
     }
     
@@ -135,17 +116,16 @@ extension TableViewController {
         let contentHeight = scrollView.contentSize.height
         
         if (offsetY > contentHeight - scrollView.frame.height) {
-            if (!loading) {
-                fetchMoreCharacters()
-            }
+            guard let _ = self.info, (!loading && info.nextPage == "")   else { return }
+            fetchMoreCharacters()
         }
     }
     
     func fetchMoreCharacters() {
-        guard let _ = self.info else { return }
         loading = true
-        self.tableView.tableFooterView?.isHidden = false
-        
+        self.hideSpinner(false)
+       
+      // RickAndMorty-API is very fast, used this to make sure spinner works
       //  DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 firstly {
                     self.networkingManager.getCharacters(page: self.info.nextPage)
@@ -158,27 +138,52 @@ extension TableViewController {
                     self.characters.append(contentsOf: filtered)
                     
                     let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
-                    
-                    UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                        self.tableView.reloadData()
-                        self.tableView.scrollToLast(row: lastRow)
-                    }, completion: { (_) in
-                        self.loading = false
-                    })
+                    self.updateTableView(with: lastRow)
                 }.ensure {
-                    self.tableView.tableFooterView?.isHidden = true
+                    self.hideSpinner(true)
                 }.catch { error in
                     print(error.localizedDescription)
                 }
         //}
     }
+    
+    func updateTableView(with lastShownRow: Int) {
+        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+            self.tableView.reloadData()
+            self.tableView.centerLastShown(row: lastShownRow)
+        }, completion: { (_) in
+            self.loading = false
+        })
+    }
+    
+    func setupViews() {
+        let spinner = LottieAnimationView()
+        spinner.resourceName = "galaxy-orbit"
+        spinner.autoPlay = true
+        spinner.playAnimation()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        
+        self.tableView.tableFooterView = spinner
+        self.tableView.tableFooterView?.isHidden = true
+        
+        self.customRefreshControl.addTarget(self, action: #selector(beginRefreshing), for: .valueChanged)
+        self.tableView.refreshControl = customRefreshControl
+    }
+}
+
+extension CharacterTableViewController {
+    func hideSpinner(_ bool: Bool) {
+        self.tableView.isScrollEnabled = bool
+        self.tableView.tableFooterView?.isHidden = bool
+    }
 }
 
 extension UITableView {
-    func scrollToLast(row: Int) {
+    func centerLastShown(row: Int) {
         let indexPath = IndexPath(row: row, section: 0);
         scrollToRow(at: indexPath, at: .middle, animated: false)
     }
 }
+
 
 

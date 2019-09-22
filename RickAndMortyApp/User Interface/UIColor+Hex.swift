@@ -12,7 +12,9 @@ import UIKit
 extension UIColor {
     @nonobjc public static var neonGreen         =   UIColor(rgba: "#39ff14")
     @nonobjc public static var darkBlue          =   UIColor(rgba: "#131D36")
+    @nonobjc public static var lighterBlue       =   UIColor(rgba: "#1d2b4f")
     @nonobjc public static var neonBlue          =   UIColor(rgba: "#4EAFC0")
+    
 }
 
 extension UIColor {

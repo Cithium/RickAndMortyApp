@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class CharacterCell: UITableViewCell {
+    @IBOutlet weak var cardView: RoundedCardView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView!

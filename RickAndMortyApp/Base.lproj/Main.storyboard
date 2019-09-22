@@ -1,70 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dDL-1Q-eaF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v5d-5F-irx">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test View Controller-->
-        <scene sceneID="uhD-UY-KwS">
+        <!--Custom Tab Bar Controller-->
+        <scene sceneID="PFp-H9-oDn">
             <objects>
-                <viewController id="gZu-yL-SJV" customClass="TestViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Uqu-hu-aTY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvV-tF-vtz" customClass="LottieAnimationView" customModule="RickAndMortyApp" customModuleProvider="target">
-                                <rect key="frame" x="182" y="423" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="icq-Yi-gIi"/>
-                                    <constraint firstAttribute="height" constant="50" id="qPX-4E-7V0"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoPlay" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="lvV-tF-vtz" firstAttribute="centerX" secondItem="Uqu-hu-aTY" secondAttribute="centerX" id="Ef1-SI-cMR"/>
-                            <constraint firstItem="lvV-tF-vtz" firstAttribute="centerY" secondItem="Uqu-hu-aTY" secondAttribute="centerY" id="lBg-Um-1by"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="7Vi-kZ-t3W"/>
-                    </view>
+                <tabBarController id="v5d-5F-irx" customClass="CustomTabBarController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fSY-k0-oLf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
                     <connections>
-                        <outlet property="viewLot" destination="lvV-tF-vtz" id="pbD-De-vXk"/>
+                        <segue destination="dDL-1Q-eaF" kind="relationship" relationship="viewControllers" id="W9d-f5-nqO"/>
+                        <segue destination="Gee-R5-5A4" kind="relationship" relationship="viewControllers" id="SDW-Ni-RnA"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LGm-Ox-MED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v1l-H9-zaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2124" y="769"/>
+            <point key="canvasLocation" x="-2457" y="-74"/>
         </scene>
-        <!--Custom Navigation Controller-->
+        <!--Item-->
         <scene sceneID="zkB-Nf-kzP">
             <objects>
                 <navigationController id="dDL-1Q-eaF" customClass="CustomNavigationController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="iconTab1" id="bgq-p5-vW8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tdl-vq-14Q">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="3KL-BG-bKI" kind="relationship" relationship="rootViewController" id="2dm-Nv-evh"/>
+                        <segue destination="3KL-BG-bKI" kind="relationship" relationship="rootViewController" id="eOP-X5-IQh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5I-Rg-kAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-594" y="121"/>
+            <point key="canvasLocation" x="-1284" y="-387"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Character Table View Controller-->
         <scene sceneID="Uzg-OP-Ria">
             <objects>
-                <tableViewController id="3KL-BG-bKI" customClass="TableViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3KL-BG-bKI" customClass="CharacterTableViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VxL-JY-IBx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,19 +74,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jMC-6e-5tq">
-                                                            <rect key="frame" x="95" y="31" width="165" height="56"/>
+                                                            <rect key="frame" x="95" y="38" width="165" height="42"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9T-cr-eAR" userLabel="nameStackView">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="165" height="13.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="800" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufj-JO-a2P" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af0-7b-Hdp" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="20.5"/>
+                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -111,16 +94,16 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIZ-0g-P26" userLabel="statusStackView">
-                                                                    <rect key="frame" x="0.0" y="35.5" width="165" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="28.5" width="165" height="13.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="800" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jie-5u-aS9" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cX-J9-h2g" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="20.5"/>
+                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -170,6 +153,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <outlet property="cardView" destination="3N6-Zw-sHR" id="dO4-ue-16B"/>
                                     <outlet property="characterImageView" destination="h9B-QT-R6p" id="iEi-X3-naZ"/>
                                     <outlet property="nameLabel" destination="Af0-7b-Hdp" id="hxs-73-o1W"/>
                                     <outlet property="statusLabel" destination="1cX-J9-h2g" id="LTW-AQ-sl2"/>
@@ -215,7 +199,184 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mwA-rI-j1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="489.85507246376818" y="120.53571428571428"/>
+            <point key="canvasLocation" x="-236" y="-387"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="NTX-Bo-1CA">
+            <objects>
+                <navigationController id="Gee-R5-5A4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="iconTab0" id="KAX-64-ZQy"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tMf-tY-yoj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fJ8-wg-AHF" kind="relationship" relationship="rootViewController" id="lNh-bg-Ocq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w59-pa-yoe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1284" y="349"/>
+        </scene>
+        <!--Favorite Table View Controller-->
+        <scene sceneID="Szq-IQ-GH0">
+            <objects>
+                <tableViewController id="fJ8-wg-AHF" customClass="FavoriteTableViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bbk-bI-DgI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CharacterCell" rowHeight="200" id="aG4-dM-dSD" customClass="CharacterCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aG4-dM-dSD" id="zjS-Ro-jSH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZS-4t-4UW" customClass="RoundedCardView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                            <rect key="frame" x="30" y="21" width="354" height="158"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RLo-cX-6gS">
+                                                    <rect key="frame" x="15" y="20" width="324" height="118"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="500" verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="qHb-Aq-fPW" customClass="RoundedImageView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="21.5" width="75" height="75"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="75" id="V7W-2C-VI7"/>
+                                                                <constraint firstAttribute="width" constant="75" id="W6i-UM-ckn"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="a47-PP-gBb">
+                                                            <rect key="frame" x="95" y="31" width="165" height="56"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9o-zV-Yt1" userLabel="nameStackView">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="800" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaO-IV-kD5" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgB-qv-q2C" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIP-Zg-9g9" userLabel="statusStackView">
+                                                                    <rect key="frame" x="0.0" y="35.5" width="165" height="20.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="800" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER8-J1-ec3" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY0-Fx-fmT" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whB-I2-pHe" customClass="UIControl">
+                                                            <rect key="frame" x="280" y="37" width="44" height="44"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mdy-sP-zjn" customClass="EmptyHeartImageView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                                    <color key="tintColor" red="0.30813490290000001" green="1" blue="0.081494938059999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="Mdy-sP-zjn" secondAttribute="trailing" id="DU9-mI-U1k"/>
+                                                                <constraint firstAttribute="width" constant="44" id="F6A-8p-M8O"/>
+                                                                <constraint firstItem="Mdy-sP-zjn" firstAttribute="top" secondItem="whB-I2-pHe" secondAttribute="top" id="bxe-U2-NfT"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Mdy-sP-zjn" secondAttribute="bottom" id="eJM-7a-iM5"/>
+                                                                <constraint firstAttribute="height" constant="44" id="etq-J0-Dcl"/>
+                                                                <constraint firstItem="Mdy-sP-zjn" firstAttribute="leading" secondItem="whB-I2-pHe" secondAttribute="leading" id="i9h-GE-6jA"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="RLo-cX-6gS" firstAttribute="centerY" secondItem="GZS-4t-4UW" secondAttribute="centerY" id="DWn-oz-Ypm"/>
+                                                <constraint firstItem="RLo-cX-6gS" firstAttribute="leading" secondItem="GZS-4t-4UW" secondAttribute="leading" constant="15" id="EbM-GE-XBo"/>
+                                                <constraint firstAttribute="trailing" secondItem="RLo-cX-6gS" secondAttribute="trailing" constant="15" id="OvV-wc-ijQ"/>
+                                                <constraint firstItem="RLo-cX-6gS" firstAttribute="top" secondItem="GZS-4t-4UW" secondAttribute="top" constant="20" id="lOP-wK-eH8"/>
+                                                <constraint firstAttribute="bottom" secondItem="RLo-cX-6gS" secondAttribute="bottom" constant="20" id="pYX-g5-kLj"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="GZS-4t-4UW" firstAttribute="top" secondItem="zjS-Ro-jSH" secondAttribute="topMargin" constant="10" id="EfW-ge-Pc6"/>
+                                        <constraint firstItem="GZS-4t-4UW" firstAttribute="leading" secondItem="zjS-Ro-jSH" secondAttribute="leadingMargin" constant="10" id="OQO-Mg-4iN"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GZS-4t-4UW" secondAttribute="bottom" constant="10" id="mjr-fA-o7P"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="GZS-4t-4UW" secondAttribute="trailing" constant="10" id="ofj-yx-nLk"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="characterImageView" destination="qHb-Aq-fPW" id="lrH-6H-IK3"/>
+                                    <outlet property="nameLabel" destination="DgB-qv-q2C" id="7mT-xw-vnW"/>
+                                    <outlet property="statusLabel" destination="VY0-Fx-fmT" id="NpU-Xi-OkN"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadingCell" rowHeight="50" id="Vd7-wj-2yS" customClass="LoadingCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vd7-wj-2yS" id="bKf-7o-QSi">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvP-RQ-ltE" customClass="LottieAnimationView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                            <rect key="frame" x="182" y="-0.5" width="50" height="50.5"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="9Zz-76-Fo9"/>
+                                                <constraint firstAttribute="width" constant="50" id="YG0-SZ-HZy"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="resourceName" value="galaxy-orbit"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="SvP-RQ-ltE" firstAttribute="centerX" secondItem="bKf-7o-QSi" secondAttribute="centerX" id="0Mf-qD-Kic"/>
+                                        <constraint firstItem="SvP-RQ-ltE" firstAttribute="centerY" secondItem="bKf-7o-QSi" secondAttribute="centerY" id="qeO-j6-H1u"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="lottieAnimation" destination="SvP-RQ-ltE" id="LkW-ag-KdQ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fJ8-wg-AHF" id="3cB-CZ-aVh"/>
+                            <outlet property="delegate" destination="fJ8-wg-AHF" id="z2v-h8-TLR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="UeX-s6-Yue"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KBw-jk-mLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-236" y="349"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconTab0" width="72" height="48"/>
+        <image name="iconTab1" width="48" height="32"/>
+    </resources>
 </document>
