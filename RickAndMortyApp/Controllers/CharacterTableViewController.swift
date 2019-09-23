@@ -130,7 +130,7 @@ extension CharacterTableViewController {
         let contentHeight = scrollView.contentSize.height
         
         if (offsetY > contentHeight - scrollView.frame.height) {
-            guard let _ = self.info, (!loading && info.nextPage == "")   else { return }
+            guard let _ = self.info, (!loading) ,!(info.nextPage == "") else { return }
             fetchMoreCharacters()
         }
     }
@@ -140,7 +140,7 @@ extension CharacterTableViewController {
         self.hideSpinner(false)
        
       // RickAndMorty-API is very fast, used this to make sure spinner works
-      //  DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                 firstly {
                     self.networkingManager.getCharacters(page: self.info.nextPage)
                 }.map { info in
@@ -158,7 +158,7 @@ extension CharacterTableViewController {
                 }.catch { error in
                     print(error.localizedDescription)
                 }
-        //}
+        }
     }
     
     func updateTableView(with lastShownRow: Int) {
@@ -189,6 +189,10 @@ extension CharacterTableViewController {
     func hideSpinner(_ bool: Bool) {
         self.tableView.isScrollEnabled = bool
         self.tableView.tableFooterView?.isHidden = bool
+        
+        if let lottieSpinner = self.tableView.tableFooterView as? LottieAnimationView, (bool == false) {
+            lottieSpinner.playAnimation()
+        }
     }
 }
 
