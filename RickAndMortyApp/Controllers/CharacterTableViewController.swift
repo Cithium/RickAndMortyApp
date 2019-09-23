@@ -13,14 +13,12 @@ import PromiseKit
 import Nuke
 
 class CharacterTableViewController: BaseTableViewController {
-    
     let networkingManager = NetworkingManger.shared
     let coreDataManager = CoreDataManager.shared
     var loading: Bool = false
     var info: Info!
     
-    var characters =  [Character]()
-    
+    var characterDataSource: CharacterDataSource!
     private let customRefreshControl = CustomRefreshControl()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +37,8 @@ class CharacterTableViewController: BaseTableViewController {
             }.then {
                 self.coreDataManager.fetchCharacters()
             }.done { (chars) in
-                self.characters = chars
+                self.characterDataSource = CharacterDataSource(characters: chars)
+                self.tableView.dataSource = self.characterDataSource
                 self.tableView.reloadData()
             }.catch { error in
                 print(error.localizedDescription)
@@ -48,8 +47,8 @@ class CharacterTableViewController: BaseTableViewController {
     
     @objc func beginRefreshing() {
         
-        firstly {
-            self.coreDataManager.deleteCharacters()
+            firstly {
+                self.coreDataManager.deleteCharacters()
             }.then {
                 self.networkingManager.getCharacters(page: "")
             }.map { info in
@@ -57,14 +56,14 @@ class CharacterTableViewController: BaseTableViewController {
             }.then {
                 self.coreDataManager.fetchCharacters()
             }.done { (chars) in
-                self.characters = chars
+                self.characterDataSource.characters = chars
                 self.tableView.reloadData()
                 self.loading = false
             }.ensure {
                 self.endRefreshing()
             }.catch { error in
                 print(error.localizedDescription)
-        }
+            }
     }
     
     func endRefreshing() {
@@ -78,7 +77,7 @@ class CharacterTableViewController: BaseTableViewController {
 
 extension CharacterTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characters[indexPath.row]
+        let character = characterDataSource.characters[indexPath.row]
         
         let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
         if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
@@ -91,32 +90,10 @@ extension CharacterTableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
-            cell.contentView.alpha = 0
-        
-            let character = characters[indexPath.row]
-            cell.character = character
-            
-            if let stringURL = character.image, let url = URL(string: stringURL) {
-                Nuke.loadImage(with: url, into: cell.characterImageView)
-            }
-            
-            return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (cell is CharacterCell) {
             UIView.animate(withDuration: 0.65, delay: 0.0, options: .allowUserInteraction, animations: {
@@ -148,8 +125,8 @@ extension CharacterTableViewController {
                 }.then {
                     self.coreDataManager.fetchCharacters()
                 }.done { (chars) in
-                    let filtered = chars.filter { !self.characters.contains($0) }
-                    self.characters.append(contentsOf: filtered)
+                    let filtered = chars.filter { !self.characterDataSource.characters.contains($0) }
+                    self.characterDataSource.characters.append(contentsOf: filtered)
                     
                     let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
                     self.updateTableView(with: lastRow)
@@ -159,15 +136,6 @@ extension CharacterTableViewController {
                     print(error.localizedDescription)
                 }
         }
-    }
-    
-    func updateTableView(with lastShownRow: Int) {
-        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-            self.tableView.reloadData()
-            self.tableView.centerLastShown(row: lastShownRow)
-        }, completion: { (_) in
-            self.loading = false
-        })
     }
     
     func setupViews() {
@@ -186,6 +154,15 @@ extension CharacterTableViewController {
 }
 
 extension CharacterTableViewController {
+    func updateTableView(with lastShownRow: Int) {
+        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+            self.tableView.reloadData()
+            self.tableView.centerLastShown(row: lastShownRow)
+        }, completion: { (_) in
+            self.loading = false
+        })
+    }
+    
     func hideSpinner(_ bool: Bool) {
         self.tableView.isScrollEnabled = bool
         self.tableView.tableFooterView?.isHidden = bool
