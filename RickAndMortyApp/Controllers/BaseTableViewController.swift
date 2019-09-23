@@ -8,12 +8,15 @@
 
 import Foundation
 import UIKit
+import Hero
 
 class BaseTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let imageView = UIImageView(image: UIImage(named: "stars"))
         imageView.contentMode = .scaleAspectFill
+        self.hero.isEnabled = true
+        imageView.hero.id = "stars"
         self.tableView.backgroundView = imageView
     }
     

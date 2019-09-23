@@ -19,6 +19,7 @@ class CharacterCell: UITableViewCell {
         didSet {
             nameLabel.text = character?.name ?? "-"
             statusLabel.text = character?.status ?? "-"
+            if let char = character { cardView.hero.id = String(describing: char.id) }
         }
     }
     

@@ -77,6 +77,20 @@ class CharacterTableViewController: BaseTableViewController {
 }
 
 extension CharacterTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = characters[indexPath.row]
+        
+        let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
+        if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
+            controller.character = character
+            
+            DispatchQueue.main.async {
+                self.present(navController, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
             cell.contentView.alpha = 0

@@ -40,6 +40,8 @@
 		85D96ADD23369F41009741E2 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96ADC23369F41009741E2 /* CustomTabBarController.swift */; };
 		85D96ADF2336A91E009741E2 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */; };
 		85D96AE12337CD68009741E2 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96AE02337CD68009741E2 /* FavoriteTableViewController.swift */; };
+		85D96AE92338B9E3009741E2 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */; };
+		85D96AEC2338BA41009741E2 /* CharacterDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		85D96ADC23369F41009741E2 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		85D96AE02337CD68009741E2 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
+		85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterDetails.storyboard; sourceTree = "<group>"; };
 		B2B16DFCD75528829389EF91 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CD7744973B193F7FB567C5E9 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,11 +134,10 @@
 				851191A42327A94800760E12 /* Model */,
 				851191942324136600760E12 /* Protocols */,
 				8511917E2323D73F00760E12 /* Service */,
+				85D96AEA2338BA05009741E2 /* Storyboards */,
 				851F5A4E232A448100C59D49 /* User Interface */,
 				851191692323D46700760E12 /* AppDelegate.swift */,
-				8511916D2323D46700760E12 /* Main.storyboard */,
 				851191732323D46800760E12 /* Assets.xcassets */,
-				851191752323D46800760E12 /* LaunchScreen.storyboard */,
 				851191782323D46800760E12 /* Info.plist */,
 				851F5A53232A559600C59D49 /* LCD_Solid.ttf */,
 				8532A2392330E51A00BBA461 /* GetSchwifty.ttf */,
@@ -227,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				8511916B2323D46700760E12 /* CharacterTableViewController.swift */,
+				85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */,
 				85D96AE02337CD68009741E2 /* FavoriteTableViewController.swift */,
 				85D96ADC23369F41009741E2 /* CustomTabBarController.swift */,
 				85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */,
@@ -239,6 +243,16 @@
 			children = (
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		85D96AEA2338BA05009741E2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				851191752323D46800760E12 /* LaunchScreen.storyboard */,
+				8511916D2323D46700760E12 /* Main.storyboard */,
+				85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		D77EE49ECCA7551CF48AFDA0 /* Frameworks */ = {
@@ -314,6 +328,7 @@
 				8532A2462331244800BBA461 /* galaxy-orbit.json in Resources */,
 				851F5A56232A671500C59D49 /* LCD_Solid.ttf in Resources */,
 				851191742323D46800760E12 /* Assets.xcassets in Resources */,
+				85D96AEC2338BA41009741E2 /* CharacterDetails.storyboard in Resources */,
 				8532A23A2330E51B00BBA461 /* GetSchwifty.ttf in Resources */,
 				8511916F2323D46700760E12 /* Main.storyboard in Resources */,
 			);
@@ -381,6 +396,7 @@
 				851191802323D7E900760E12 /* Service.swift in Sources */,
 				85D96ADD23369F41009741E2 /* CustomTabBarController.swift in Sources */,
 				851F5A50232A45C700C59D49 /* Views.swift in Sources */,
+				85D96AE92338B9E3009741E2 /* CharacterDetailsViewController.swift in Sources */,
 				851191C72327B0DB00760E12 /* Character+CoreDataProperties.swift in Sources */,
 				8511919C232417AE00760E12 /* JSONPlaceholders.swift in Sources */,
 				85D96AD72332BC1F009741E2 /* LoadingCell.swift in Sources */,
