@@ -69,6 +69,24 @@ class CoreDataManager {
         }
     }
     
+    func fetchFavoriteCharacters() -> Promise<[Character]> {
+        return Promise { seal in
+            let context = persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<Character>(entityName: "Character")
+            fetchRequest.predicate = NSPredicate(format: "isFavorite = %d", true)
+            
+            do {
+                let characters = try context.fetch(fetchRequest)
+                seal.fulfill(characters)
+            } catch let fetchErr {
+                print("Failed to fetch characters:", fetchErr)
+                seal.reject(fetchErr)
+            }
+            
+        }
+    }
+    
     func deleteCharacters() -> Promise<Void> {
         return Promise { seal in
             let context = persistentContainer.viewContext

@@ -18,66 +18,41 @@ class FavoriteTableViewController: BaseTableViewController {
     var loading: Bool = false
     var info: Info!
     
-    var characterDataSource: CharacterDataSource!
+    var characterDataSource: TableViewDataSource<Character>!
     private let customRefreshControl = CustomRefreshControl()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+            firstly {
+                self.coreDataManager.fetchFavoriteCharacters()
+            }.done { (chars) in
+                self.charactersDidLoad(chars)
+                self.tableView.reloadData()
+            }.catch { error in
+                print(error.localizedDescription)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Characters"
+        navigationItem.title = "Favorites"
         setupViews()
-        
-        firstly {
-            networkingManager.getCharacters(page: "")
-            }.map { info in
-                self.info = info
-            }.then {
-                self.coreDataManager.fetchCharacters()
+        /*
+            firstly {
+                self.coreDataManager.fetchFavoriteCharacters()
             }.done { (chars) in
-                self.characterDataSource = CharacterDataSource(characters: chars)
-                self.tableView.dataSource = self.characterDataSource
+                self.charactersDidLoad(chars)
                 self.tableView.reloadData()
             }.catch { error in
                 print(error.localizedDescription)
-        }
-    }
-    
-    @objc func beginRefreshing() {
-        
-        firstly {
-            self.coreDataManager.deleteCharacters()
-            }.then {
-                self.networkingManager.getCharacters(page: "")
-            }.map { info in
-                self.info = info
-            }.then {
-                self.coreDataManager.fetchCharacters()
-            }.done { (chars) in
-                self.characterDataSource.characters = chars
-                self.tableView.reloadData()
-                self.loading = false
-            }.ensure {
-                self.endRefreshing()
-            }.catch { error in
-                print(error.localizedDescription)
-        }
-    }
-    
-    func endRefreshing() {
-        guard customRefreshControl.isRefreshing else {
-            return
-        }
-        
-        customRefreshControl.endRefreshing()
+            } */
     }
 }
 
 extension FavoriteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characterDataSource.characters[indexPath.row]
+        let character = characterDataSource.models[indexPath.row]
         
         let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
         if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
@@ -90,51 +65,36 @@ extension FavoriteTableViewController {
         
     }
     
+    func charactersDidLoad(_ characters: [Character]) {
+        let dataSource = TableViewDataSource(
+            models: characters,
+            reuseIdentifier: "CharacterCell"
+        ) { character, cell in
+            cell.contentView.alpha = 0.0
+            
+            guard let characterCell = cell as? CharacterCell else { return }
+            characterCell.character = character
+            characterCell.heartImageView.isHighlighted = character.isFavorite
+            characterCell.delegate = self
+            
+            if let stringURL = character.image, let url = URL(string: stringURL) {
+                Nuke.loadImage(with: url, into: characterCell.characterImageView)
+            }
+        }
+        
+        self.characterDataSource = dataSource
+        tableView.dataSource = dataSource
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (cell is CharacterCell) {
-            UIView.animate(withDuration: 0.65, delay: 0.0, options: .allowUserInteraction, animations: {
+            UIView.animate(withDuration: 0.55, delay: 0.0, options: .allowUserInteraction, animations: {
                 cell.contentView.alpha = 1.0
             }, completion: nil)
-        }
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if (offsetY > contentHeight - scrollView.frame.height) {
-            guard let _ = self.info, (!loading) ,!(info.nextPage == "") else { return }
-            fetchMoreCharacters()
-        }
-    }
-    
-    func fetchMoreCharacters() {
-        loading = true
-        self.hideSpinner(false)
-        
-        // RickAndMorty-API is very fast, used this to make sure spinner works
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                firstly {
-                    self.networkingManager.getCharacters(page: self.info.nextPage)
-                }.map { info in
-                    self.info = info
-                }.then {
-                    self.coreDataManager.fetchCharacters()
-                }.done { (chars) in
-                    let filtered = chars.filter { !self.characterDataSource.characters.contains($0) }
-                    self.characterDataSource.characters.append(contentsOf: filtered)
-                    
-                    let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
-                    self.updateTableView(with: lastRow)
-                }.ensure {
-                    self.hideSpinner(true)
-                }.catch { error in
-                    print(error.localizedDescription)
-                }
         }
     }
     
@@ -147,30 +107,17 @@ extension FavoriteTableViewController {
         
         self.tableView.tableFooterView = spinner
         self.tableView.tableFooterView?.isHidden = true
-        
-        self.customRefreshControl.addTarget(self, action: #selector(beginRefreshing), for: .valueChanged)
-        self.tableView.refreshControl = customRefreshControl
     }
 }
 
-extension FavoriteTableViewController {
-    func updateTableView(with lastShownRow: Int) {
-        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-            self.tableView.reloadData()
-            self.tableView.centerLastShown(row: lastShownRow)
-        }, completion: { (_) in
-            self.loading = false
-        })
+extension FavoriteTableViewController: CharacterCellDelegate {
+    func didFavorite(with character: Character) {
+        character.isFavorite = !character.isFavorite
+        coreDataManager.save()
     }
     
-    func hideSpinner(_ bool: Bool) {
-        self.tableView.isScrollEnabled = bool
-        self.tableView.tableFooterView?.isHidden = bool
-        
-        if let lottieSpinner = self.tableView.tableFooterView as? LottieAnimationView, (bool == false) {
-            lottieSpinner.playAnimation()
-        }
-    }
+    
 }
+
 
 

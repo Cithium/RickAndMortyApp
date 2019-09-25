@@ -18,7 +18,7 @@ class CharacterTableViewController: BaseTableViewController {
     var loading: Bool = false
     var info: Info!
     
-    var characterDataSource: CharacterDataSource!
+    var characterDataSource: TableViewDataSource<Character>!
     private let customRefreshControl = CustomRefreshControl()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +37,7 @@ class CharacterTableViewController: BaseTableViewController {
             }.then {
                 self.coreDataManager.fetchCharacters()
             }.done { (chars) in
-                self.characterDataSource = CharacterDataSource(characters: chars)
-                self.tableView.dataSource = self.characterDataSource
+                self.charactersDidLoad(chars)
                 self.tableView.reloadData()
             }.catch { error in
                 print(error.localizedDescription)
@@ -56,7 +55,7 @@ class CharacterTableViewController: BaseTableViewController {
             }.then {
                 self.coreDataManager.fetchCharacters()
             }.done { (chars) in
-                self.characterDataSource.characters = chars
+                self.characterDataSource.models = chars
                 self.tableView.reloadData()
                 self.loading = false
             }.ensure {
@@ -76,8 +75,10 @@ class CharacterTableViewController: BaseTableViewController {
 }
 
 extension CharacterTableViewController {
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characterDataSource.characters[indexPath.row]
+        let character = characterDataSource.models[indexPath.row]
         
         let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
         if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
@@ -88,6 +89,27 @@ extension CharacterTableViewController {
             }
         }
         
+    }
+    
+    func charactersDidLoad(_ characters: [Character]) {
+        let dataSource = TableViewDataSource(
+            models: characters,
+            reuseIdentifier: "CharacterCell"
+        ) { character, cell in
+            cell.contentView.alpha = 0.0
+            
+            guard let characterCell = cell as? CharacterCell else { return }
+            characterCell.character = character
+            characterCell.heartImageView.isHighlighted = character.isFavorite
+            characterCell.delegate = self
+            
+            if let stringURL = character.image, let url = URL(string: stringURL) {
+                Nuke.loadImage(with: url, into: characterCell.characterImageView)
+            }
+        }
+        
+        self.characterDataSource = dataSource
+        tableView.dataSource = dataSource
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -125,8 +147,8 @@ extension CharacterTableViewController {
                 }.then {
                     self.coreDataManager.fetchCharacters()
                 }.done { (chars) in
-                    let filtered = chars.filter { !self.characterDataSource.characters.contains($0) }
-                    self.characterDataSource.characters.append(contentsOf: filtered)
+                    let filtered = chars.filter { !self.characterDataSource.models.contains($0) }
+                    self.characterDataSource.models.append(contentsOf: filtered)
                     
                     let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
                     self.updateTableView(with: lastRow)
@@ -171,6 +193,15 @@ extension CharacterTableViewController {
             lottieSpinner.playAnimation()
         }
     }
+}
+
+extension CharacterTableViewController: CharacterCellDelegate {
+    func didFavorite(with character: Character) {
+        character.isFavorite = !character.isFavorite
+        coreDataManager.save()
+    }
+    
+    
 }
 
 extension UITableView {

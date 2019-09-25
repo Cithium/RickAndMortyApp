@@ -9,12 +9,25 @@
 import Foundation
 import UIKit
 
+protocol CharacterCellDelegate: class {
+    func didFavorite(with character: Character)
+}
+
 class CharacterCell: UITableViewCell {
     @IBOutlet weak var cardView: RoundedCardView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var heartImageView: HeartImageView!
+    
+    weak var delegate: CharacterCellDelegate?
+    
+    @IBAction func favoriteAction(_ sender: Any) {
+        guard let character = self.character else { return }
+        heartImageView.isHighlighted = !heartImageView.isHighlighted
+        delegate?.didFavorite(with: character)
+    }
+    
     
     var character: Character? {
         didSet {
