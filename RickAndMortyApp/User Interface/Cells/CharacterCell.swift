@@ -14,6 +14,7 @@ class CharacterCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView!
+    @IBOutlet weak var heartImageView: HeartImageView!
     
     var character: Character? {
         didSet {

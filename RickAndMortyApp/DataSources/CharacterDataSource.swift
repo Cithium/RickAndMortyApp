@@ -20,10 +20,13 @@ class CharacterDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
-        cell.contentView.alpha = 0
+        cell.contentView.alpha = 0.0
         
         let character = characters[indexPath.row]
         cell.character = character
+        
+        let resourceName = character.isFavorite ? "filledHeart": "emptyHeart"
+        cell.heartImageView.resourceName = resourceName
         
         if let stringURL = character.image, let url = URL(string: stringURL) {
             Nuke.loadImage(with: url, into: cell.characterImageView)

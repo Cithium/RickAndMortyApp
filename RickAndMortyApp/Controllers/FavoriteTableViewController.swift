@@ -6,7 +6,6 @@
 //  Copyright © 2019 Hamza Abdulilah. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import Moya
 import CoreData
@@ -14,14 +13,12 @@ import PromiseKit
 import Nuke
 
 class FavoriteTableViewController: BaseTableViewController {
-    
     let networkingManager = NetworkingManger.shared
     let coreDataManager = CoreDataManager.shared
     var loading: Bool = false
     var info: Info!
     
-    var characters =  [Character]()
-    
+    var characterDataSource: CharacterDataSource!
     private let customRefreshControl = CustomRefreshControl()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +27,7 @@ class FavoriteTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Favorites"
+        navigationItem.title = "Characters"
         setupViews()
         
         firstly {
@@ -40,7 +37,8 @@ class FavoriteTableViewController: BaseTableViewController {
             }.then {
                 self.coreDataManager.fetchCharacters()
             }.done { (chars) in
-                self.characters = chars
+                self.characterDataSource = CharacterDataSource(characters: chars)
+                self.tableView.dataSource = self.characterDataSource
                 self.tableView.reloadData()
             }.catch { error in
                 print(error.localizedDescription)
@@ -58,7 +56,7 @@ class FavoriteTableViewController: BaseTableViewController {
             }.then {
                 self.coreDataManager.fetchCharacters()
             }.done { (chars) in
-                self.characters = chars
+                self.characterDataSource.characters = chars
                 self.tableView.reloadData()
                 self.loading = false
             }.ensure {
@@ -78,25 +76,18 @@ class FavoriteTableViewController: BaseTableViewController {
 }
 
 extension FavoriteTableViewController {
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = characterDataSource.characters[indexPath.row]
         
-        let character = characters[indexPath.row]
-        cell.character = character
-        
-        if let stringURL = character.image, let url = URL(string: stringURL) {
-            Nuke.loadImage(with: url, into: cell.characterImageView)
+        let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
+        if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
+            controller.character = character
+            
+            DispatchQueue.main.async {
+                self.present(navController, animated: true, completion: nil)
+            }
         }
         
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -105,10 +96,9 @@ extension FavoriteTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (cell is CharacterCell) {
-            cell.alpha = 0
-            UIView.animate(withDuration: 0.75) {
-                cell.alpha = 1.0
-            }
+            UIView.animate(withDuration: 0.65, delay: 0.0, options: .allowUserInteraction, animations: {
+                cell.contentView.alpha = 1.0
+            }, completion: nil)
         }
     }
     
@@ -117,46 +107,35 @@ extension FavoriteTableViewController {
         let contentHeight = scrollView.contentSize.height
         
         if (offsetY > contentHeight - scrollView.frame.height) {
-            if (!loading) {
-                fetchMoreCharacters()
-            }
+            guard let _ = self.info, (!loading) ,!(info.nextPage == "") else { return }
+            fetchMoreCharacters()
         }
     }
     
     func fetchMoreCharacters() {
-        guard let _ = self.info else { return }
         loading = true
         self.hideSpinner(false)
         
         // RickAndMorty-API is very fast, used this to make sure spinner works
-        //  DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-        firstly {
-            self.networkingManager.getCharacters(page: self.info.nextPage)
-            }.map { info in
-                self.info = info
-            }.then {
-                self.coreDataManager.fetchCharacters()
-            }.done { (chars) in
-                let filtered = chars.filter { !self.characters.contains($0) }
-                self.characters.append(contentsOf: filtered)
-                
-                let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
-                self.updateTableView(with: lastRow)
-            }.ensure {
-                self.hideSpinner(true)
-            }.catch { error in
-                print(error.localizedDescription)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                firstly {
+                    self.networkingManager.getCharacters(page: self.info.nextPage)
+                }.map { info in
+                    self.info = info
+                }.then {
+                    self.coreDataManager.fetchCharacters()
+                }.done { (chars) in
+                    let filtered = chars.filter { !self.characterDataSource.characters.contains($0) }
+                    self.characterDataSource.characters.append(contentsOf: filtered)
+                    
+                    let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
+                    self.updateTableView(with: lastRow)
+                }.ensure {
+                    self.hideSpinner(true)
+                }.catch { error in
+                    print(error.localizedDescription)
+                }
         }
-        //}
-    }
-    
-    func updateTableView(with lastShownRow: Int) {
-        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-            self.tableView.reloadData()
-            self.tableView.centerLastShown(row: lastShownRow)
-        }, completion: { (_) in
-            self.loading = false
-        })
     }
     
     func setupViews() {
@@ -175,10 +154,23 @@ extension FavoriteTableViewController {
 }
 
 extension FavoriteTableViewController {
+    func updateTableView(with lastShownRow: Int) {
+        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+            self.tableView.reloadData()
+            self.tableView.centerLastShown(row: lastShownRow)
+        }, completion: { (_) in
+            self.loading = false
+        })
+    }
+    
     func hideSpinner(_ bool: Bool) {
+        self.tableView.isScrollEnabled = bool
         self.tableView.tableFooterView?.isHidden = bool
+        
+        if let lottieSpinner = self.tableView.tableFooterView as? LottieAnimationView, (bool == false) {
+            lottieSpinner.playAnimation()
+        }
     }
 }
-
 
 

@@ -130,9 +130,9 @@
 		851191682323D46700760E12 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				85D96ADB23369EC3009741E2 /* Controllers */,
 				85D96AEF233969C3009741E2 /* DataSources */,
 				85D96AE22337CDDD009741E2 /* Extensions */,
-				85D96ADB23369EC3009741E2 /* Controllers */,
 				8511919F23241AC300760E12 /* Managers */,
 				851191A42327A94800760E12 /* Model */,
 				851191942324136600760E12 /* Protocols */,
@@ -232,11 +232,11 @@
 		85D96ADB23369EC3009741E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */,
 				8511916B2323D46700760E12 /* CharacterTableViewController.swift */,
 				85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */,
-				85D96AE02337CD68009741E2 /* FavoriteTableViewController.swift */,
 				85D96ADC23369F41009741E2 /* CustomTabBarController.swift */,
-				85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */,
+				85D96AE02337CD68009741E2 /* FavoriteTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,8 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				851191752323D46800760E12 /* LaunchScreen.storyboard */,
-				8511916D2323D46700760E12 /* Main.storyboard */,
 				85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */,
+				8511916D2323D46700760E12 /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

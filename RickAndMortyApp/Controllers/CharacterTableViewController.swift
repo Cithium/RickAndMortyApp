@@ -96,7 +96,7 @@ extension CharacterTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (cell is CharacterCell) {
-            UIView.animate(withDuration: 0.65, delay: 0.0, options: .allowUserInteraction, animations: {
+            UIView.animate(withDuration: 0.55, delay: 0.0, options: .allowUserInteraction, animations: {
                 cell.contentView.alpha = 1.0
             }, completion: nil)
         }
@@ -155,7 +155,7 @@ extension CharacterTableViewController {
 
 extension CharacterTableViewController {
     func updateTableView(with lastShownRow: Int) {
-        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: self.tableView, duration: 0.65, options: .transitionCrossDissolve, animations: {
             self.tableView.reloadData()
             self.tableView.centerLastShown(row: lastShownRow)
         }, completion: { (_) in

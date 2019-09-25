@@ -75,9 +75,17 @@ class CustomRefreshControl: UIRefreshControl {
 }
 
 @IBDesignable
-class EmptyHeartImageView: CustomImageView {
+class HeartImageView: CustomImageView {
+    
+    @IBInspectable var resourceName: String? {
+        didSet {
+            configure()
+        }
+    }
+    
     override func configure() {
-        let heartImage = UIImage(named: "emptyHeart")?.withRenderingMode(.alwaysTemplate)
+        guard let resourceName = resourceName else { return }
+        let heartImage = UIImage(named: resourceName)?.withRenderingMode(.alwaysTemplate)
         image = heartImage
         tintColor = UIColor.neonGreen
     }
