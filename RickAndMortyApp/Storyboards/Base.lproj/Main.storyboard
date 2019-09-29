@@ -307,6 +307,9 @@
                                                                 <constraint firstAttribute="height" constant="44" id="etq-J0-Dcl"/>
                                                                 <constraint firstItem="Mdy-sP-zjn" firstAttribute="leading" secondItem="whB-I2-pHe" secondAttribute="leading" id="i9h-GE-6jA"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <action selector="favoriteAction:" destination="aG4-dM-dSD" eventType="touchUpInside" id="8NJ-bq-To6"/>
+                                                            </connections>
                                                         </view>
                                                     </subviews>
                                                 </stackView>

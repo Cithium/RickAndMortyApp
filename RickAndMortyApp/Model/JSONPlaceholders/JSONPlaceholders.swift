@@ -30,7 +30,7 @@ struct JSONCharacter: Decodable {
 }
 
 struct JSONLocation: Decodable {
-    var id: Int64?
+    var id: Int64
     var name: String
     var type: String?
     var dimension: String?

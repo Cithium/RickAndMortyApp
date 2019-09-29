@@ -75,8 +75,6 @@ class CharacterTableViewController: BaseTableViewController {
 }
 
 extension CharacterTableViewController {
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let character = characterDataSource.models[indexPath.row]
         
@@ -200,8 +198,6 @@ extension CharacterTableViewController: CharacterCellDelegate {
         character.isFavorite = !character.isFavorite
         coreDataManager.save()
     }
-    
-    
 }
 
 extension UITableView {

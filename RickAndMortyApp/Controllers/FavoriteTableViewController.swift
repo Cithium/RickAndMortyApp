@@ -115,8 +115,6 @@ extension FavoriteTableViewController: CharacterCellDelegate {
         character.isFavorite = !character.isFavorite
         coreDataManager.save()
     }
-    
-    
 }
 
 

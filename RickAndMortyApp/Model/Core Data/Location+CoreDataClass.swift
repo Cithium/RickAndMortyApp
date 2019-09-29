@@ -15,6 +15,7 @@ public class Location: NSManagedObject, JSONConvertible {
         guard let jsonLocation = jsonPlaceholder as? JSONLocation else { return }
         
         let location        = Location(context: CoreDataManager.shared.backgroundContext)
+        location.id         = jsonLocation.id
         location.name       = jsonLocation.name
         location.type       = jsonLocation.type
         location.dimension  = jsonLocation.dimension

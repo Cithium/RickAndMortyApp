@@ -24,10 +24,10 @@ class CharacterCell: UITableViewCell {
     
     @IBAction func favoriteAction(_ sender: Any) {
         guard let character = self.character else { return }
+        
         heartImageView.isHighlighted = !heartImageView.isHighlighted
         delegate?.didFavorite(with: character)
     }
-    
     
     var character: Character? {
         didSet {
