@@ -18,7 +18,6 @@
     </entity>
     <entity name="Location" representedClassName=".Location" syncable="YES">
         <attribute name="dimension" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="residents" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -37,7 +36,7 @@
     </configuration>
     <elements>
         <element name="Character" positionX="-54" positionY="-9" width="128" height="180"/>
-        <element name="Location" positionX="-60.30078125" positionY="284.75" width="128" height="150"/>
+        <element name="Location" positionX="-60.30078125" positionY="284.75" width="128" height="135"/>
         <element name="Origin" positionX="222.01953125" positionY="18.28515625" width="128" height="90"/>
     </elements>
 </model>

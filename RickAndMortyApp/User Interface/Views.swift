@@ -54,7 +54,6 @@ class LottieAnimationView: CustomView {
 }
 
 @IBDesignable
-
 class CustomRefreshControl: UIRefreshControl {
     override init() {
         super.init(frame: .zero)
@@ -71,6 +70,16 @@ class CustomRefreshControl: UIRefreshControl {
             NSAttributedString.Key.foregroundColor : UIColor.neonGreen,
             NSAttributedString.Key.font: UIFont(name: "LCD Solid", size: 10.0)
         ])
+    }
+}
+
+@IBDesignable
+class ArrowImageView: CustomImageView {
+    override func configure() {
+        let arrowImage = UIImage(named: "ico_arrow_right")?.withRenderingMode(.alwaysTemplate)
+        image = arrowImage
+        tintColor = UIColor.neonGreen
+        contentMode = .center
     }
 }
 

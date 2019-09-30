@@ -53,6 +53,21 @@ class CoreDataManager {
         }
     }
     
+    func fetchPersistedLocation(locationName: String) -> Location? {
+        guard let context = backgroundContext else { return nil }
+        
+        let fetchRequest = NSFetchRequest<Location>(entityName: "Location")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", locationName)
+        
+        do {
+            let fetchResult = try context.fetch(fetchRequest)
+            return fetchResult.first
+        } catch let fetchErr {
+            print("Failed to fetch location:", fetchErr)
+            return nil
+        }
+    }
+    
     func fetchCharacters() -> Promise<[Character]> {
         return Promise { seal in
             let context = persistentContainer.viewContext
@@ -65,7 +80,6 @@ class CoreDataManager {
                 print("Failed to fetch characters:", fetchErr)
                 seal.reject(fetchErr)
             }
-            
         }
     }
     

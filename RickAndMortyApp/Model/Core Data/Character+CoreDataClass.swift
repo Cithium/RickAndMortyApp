@@ -23,7 +23,14 @@ public class Character: NSManagedObject, JSONConvertible {
         character.image     = jsonCharacter.image
         
         let jsonLocation    = jsonCharacter.location
-        let location        = Location(context: CoreDataManager.shared.backgroundContext)
+        
+        var location: Location!
+        if let persistedLocation = CoreDataManager.shared.fetchPersistedLocation(locationName: jsonLocation.name) {
+            location        = persistedLocation
+        } else {
+            location        = Location(context: CoreDataManager.shared.backgroundContext)
+        }
+        
         location.name       = jsonLocation.name
         location.type       = jsonLocation.type
         location.dimension  = jsonLocation.dimension
