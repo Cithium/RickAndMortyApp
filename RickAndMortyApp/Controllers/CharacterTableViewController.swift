@@ -15,11 +15,18 @@ import Nuke
 class CharacterTableViewController: BaseTableViewController {
     let networkingManager = NetworkingManger.shared
     let coreDataManager = CoreDataManager.shared
+    
     var loading: Bool = false
     var info: Info!
     
     var characterDataSource: TableViewDataSource<Character>!
     private let customRefreshControl = CustomRefreshControl()
+    
+    private var navigator: CharacterNavigator!
+    
+    private func handleTapCell(with character: Character) {
+        self.navigator.navigate(to: .characterDetails(charater: character))
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -27,15 +34,16 @@ class CharacterTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Characters"
+        navigator = CharacterNavigator(navigationController: navigationController!)
+        
         setupViews()
 
             firstly {
-                networkingManager.getCharacters(page: "")
+                networkingManager.getCharacters(page: "1")
             }.map { info in
                 self.info = info
             }.then {
-                self.coreDataManager.fetchCharacters()
+                self.coreDataManager.fetchCharacters(page: "1")
             }.done { (chars) in
                 self.charactersDidLoad(chars)
                 self.tableView.reloadData()
@@ -49,11 +57,11 @@ class CharacterTableViewController: BaseTableViewController {
             firstly {
                 self.coreDataManager.deleteCharacters()
             }.then {
-                self.networkingManager.getCharacters(page: "")
+                self.networkingManager.getCharacters(page: "1")
             }.map { info in
                 self.info = info
             }.then {
-                self.coreDataManager.fetchCharacters()
+                self.coreDataManager.fetchCharacters(page: "1")
             }.done { (chars) in
                 self.characterDataSource.models = chars
                 self.tableView.reloadData()
@@ -77,7 +85,7 @@ class CharacterTableViewController: BaseTableViewController {
 extension CharacterTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let character = characterDataSource.models[indexPath.row]
-        
+        /*
         let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
         if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
             controller.character = character
@@ -85,8 +93,8 @@ extension CharacterTableViewController {
             DispatchQueue.main.async {
                 self.present(navController, animated: true, completion: nil)
             }
-        }
-        
+        }*/
+        handleTapCell(with: character)
     }
     
     func charactersDidLoad(_ characters: [Character]) {
@@ -143,7 +151,7 @@ extension CharacterTableViewController {
                 }.map { info in
                     self.info = info
                 }.then {
-                    self.coreDataManager.fetchCharacters()
+                    self.coreDataManager.fetchCharacters(page: self.info.nextPage)
                 }.done { (chars) in
                     let filtered = chars.filter { !self.characterDataSource.models.contains($0) }
                     self.characterDataSource.models.append(contentsOf: filtered)
@@ -159,6 +167,8 @@ extension CharacterTableViewController {
     }
     
     func setupViews() {
+        navigationItem.title = "Characters"
+        
         let spinner = LottieAnimationView()
         spinner.resourceName = "galaxy-orbit"
         spinner.autoPlay = true

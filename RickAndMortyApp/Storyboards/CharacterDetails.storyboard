@@ -108,10 +108,10 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXZ-DQ-8v7">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXZ-DQ-8v7" customClass="UIControl">
                                                 <rect key="frame" x="0.0" y="100.5" width="324" height="50"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-BJ-wJT">
+                                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-BJ-wJT">
                                                         <rect key="frame" x="0.0" y="0.0" width="324" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql4-6w-0bv" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
@@ -145,6 +145,9 @@
                                                     <constraint firstItem="5tF-BJ-wJT" firstAttribute="leading" secondItem="cXZ-DQ-8v7" secondAttribute="leading" id="hkF-A6-wUh"/>
                                                     <constraint firstItem="5tF-BJ-wJT" firstAttribute="top" secondItem="cXZ-DQ-8v7" secondAttribute="top" id="tKr-g1-0gC"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="showLocationsDetails:" destination="5Mx-HV-use" eventType="touchUpInside" id="y6W-Ih-SBA"/>
+                                                </connections>
                                             </view>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="9is-Jr-smZ">
                                                 <rect key="frame" x="0.0" y="170.5" width="324" height="293.5"/>
@@ -197,6 +200,341 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVW-Q8-Od9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="653.62318840579712" y="-7.3660714285714279"/>
+        </scene>
+        <!--Location Details View Controller-->
+        <scene sceneID="YmB-Gp-fKa">
+            <objects>
+                <viewController storyboardIdentifier="LocationDetailsViewController" id="fno-Sy-jAa" customClass="LocationDetailsViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sjt-y1-t6H">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stars" translatesAutoresizingMaskIntoConstraints="NO" id="s5A-JS-OJJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0M-Ua-GHm" customClass="RoundedCardView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="35" y="94" width="344" height="718"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="500" verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="ksb-pd-fq0" customClass="RoundedImageView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                        <rect key="frame" x="97" y="20" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="H3k-WH-bH9"/>
+                                            <constraint firstAttribute="width" constant="150" id="Muh-gh-yEX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location photo missing in database..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtU-ss-JDC" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                        <rect key="frame" x="97" y="20" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="c4q-Ic-ndD"/>
+                                            <constraint firstAttribute="height" constant="150" id="lpS-lP-wBQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nBT-fa-WNK">
+                                        <rect key="frame" x="10" y="190" width="324" height="508"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3QW-pv-Eea">
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="13.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arE-iY-uX3" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOv-4J-eVe" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BKZ-as-kL2">
+                                                <rect key="frame" x="0.0" y="33.5" width="324" height="13.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAg-oJ-pN0" userLabel="type" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="249" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnr-Fr-ZMW" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2mE-ji-nQ9">
+                                                <rect key="frame" x="0.0" y="67" width="324" height="13.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Dimension:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9J-YJ-w6a" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6u-Ha-NZi" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gvw-eU-ga0" customClass="UIControl">
+                                                <rect key="frame" x="0.0" y="100.5" width="324" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vz9-v5-Jfn">
+                                                        <rect key="frame" x="0.0" y="0.0" width="324" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Residents:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-zG-OH6" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="50"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSO-HE-aTn" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                <rect key="frame" x="182.5" y="0.0" width="101.5" height="50"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMb-Ku-lWw" customClass="ArrowImageView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                <rect key="frame" x="294" y="0.0" width="30" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="IsJ-75-X1M"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="urb-3p-EwS"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="vz9-v5-Jfn" secondAttribute="trailing" id="MvW-1F-4Mu"/>
+                                                    <constraint firstItem="vz9-v5-Jfn" firstAttribute="top" secondItem="Gvw-eU-ga0" secondAttribute="top" id="Ny5-ED-U3P"/>
+                                                    <constraint firstItem="vz9-v5-Jfn" firstAttribute="leading" secondItem="Gvw-eU-ga0" secondAttribute="leading" id="VHu-KV-3Iv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vz9-v5-Jfn" secondAttribute="bottom" id="mYX-4b-jvu"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="residentsTapped:" destination="fno-Sy-jAa" eventType="touchUpInside" id="eGg-od-rlW"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="Mvy-li-grT">
+                                                <rect key="frame" x="0.0" y="170.5" width="324" height="337.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nBT-fa-WNK" secondAttribute="trailing" constant="10" id="18e-Hy-Ik8"/>
+                                    <constraint firstItem="wtU-ss-JDC" firstAttribute="centerX" secondItem="x0M-Ua-GHm" secondAttribute="centerX" id="DUb-8h-9qc"/>
+                                    <constraint firstItem="nBT-fa-WNK" firstAttribute="top" secondItem="ksb-pd-fq0" secondAttribute="bottom" constant="20" id="GD9-gX-vRn"/>
+                                    <constraint firstItem="ksb-pd-fq0" firstAttribute="top" secondItem="x0M-Ua-GHm" secondAttribute="top" constant="20" id="NzC-wM-eZP"/>
+                                    <constraint firstItem="ksb-pd-fq0" firstAttribute="centerX" secondItem="x0M-Ua-GHm" secondAttribute="centerX" id="U9S-K8-cST"/>
+                                    <constraint firstItem="nBT-fa-WNK" firstAttribute="leading" secondItem="x0M-Ua-GHm" secondAttribute="leading" constant="10" id="amM-3e-k01"/>
+                                    <constraint firstItem="wtU-ss-JDC" firstAttribute="top" secondItem="x0M-Ua-GHm" secondAttribute="top" constant="20" id="du3-5o-8DV"/>
+                                    <constraint firstAttribute="bottom" secondItem="nBT-fa-WNK" secondAttribute="bottom" constant="20" id="zyg-Ls-pSr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="s5A-JS-OJJ" secondAttribute="trailing" id="5Py-W7-W2f"/>
+                            <constraint firstItem="0QG-Lv-2tK" firstAttribute="trailing" secondItem="x0M-Ua-GHm" secondAttribute="trailing" constant="35" id="OPu-jC-SF6"/>
+                            <constraint firstItem="x0M-Ua-GHm" firstAttribute="top" secondItem="0QG-Lv-2tK" secondAttribute="top" constant="50" id="Q3n-kf-abY"/>
+                            <constraint firstItem="s5A-JS-OJJ" firstAttribute="leading" secondItem="Sjt-y1-t6H" secondAttribute="leading" id="TuD-4m-esW"/>
+                            <constraint firstItem="x0M-Ua-GHm" firstAttribute="leading" secondItem="0QG-Lv-2tK" secondAttribute="leading" constant="35" id="UEA-FW-YbO"/>
+                            <constraint firstAttribute="bottom" secondItem="s5A-JS-OJJ" secondAttribute="bottom" id="ZAD-9g-0HR"/>
+                            <constraint firstItem="0QG-Lv-2tK" firstAttribute="bottom" secondItem="x0M-Ua-GHm" secondAttribute="bottom" constant="50" id="hh8-BT-OOs"/>
+                            <constraint firstItem="s5A-JS-OJJ" firstAttribute="top" secondItem="Sjt-y1-t6H" secondAttribute="top" id="jX2-xH-wGz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0QG-Lv-2tK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bRo-dU-c6B"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="dimension" destination="p6u-Ha-NZi" id="f4r-DS-Qes"/>
+                        <outlet property="nameLabel" destination="vOv-4J-eVe" id="hjB-jA-5Ar"/>
+                        <outlet property="typeLabel" destination="tnr-Fr-ZMW" id="TqE-sG-P5x"/>
+                        <segue destination="Qkf-ib-MOY" kind="show" identifier="residentsSegue" id="pAo-9Z-9JC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIv-sZ-3B4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1539" y="-8"/>
+        </scene>
+        <!--Residents Table View Controller-->
+        <scene sceneID="K8T-xe-0Li">
+            <objects>
+                <tableViewController id="Qkf-ib-MOY" customClass="ResidentsTableViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vrf-xB-pPF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CharacterCell" rowHeight="200" id="uLw-BY-SlS" customClass="CharacterCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uLw-BY-SlS" id="uMn-UV-fMc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3HE-hU-bqR" customClass="RoundedCardView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                            <rect key="frame" x="30" y="21" width="354" height="158"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="teo-KS-YdX">
+                                                    <rect key="frame" x="15" y="20" width="324" height="118"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="500" verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="nMc-WE-5Ii" customClass="RoundedImageView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="21.5" width="75" height="75"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="75" id="GeU-IE-nuO"/>
+                                                                <constraint firstAttribute="height" constant="75" id="ePc-RA-aaU"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hs5-Sz-v5B">
+                                                            <rect key="frame" x="95" y="38" width="165" height="42"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZE-aw-7HW" userLabel="nameStackView">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="165" height="13.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="800" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWt-Kw-nOg" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="13.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNd-c7-NyW" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="13.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whw-Pa-bAx" userLabel="statusStackView">
+                                                                    <rect key="frame" x="0.0" y="28.5" width="165" height="13.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="800" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLG-l3-r10" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="13.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qjf-L9-gLH" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="82.5" y="0.0" width="82.5" height="13.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ert-vB-6pU" customClass="UIControl">
+                                                            <rect key="frame" x="280" y="37" width="44" height="44"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TTY-Xt-wdu" customClass="HeartImageView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                                    <color key="tintColor" red="0.30813490290000001" green="1" blue="0.081494938059999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="44" id="5qh-E2-oHN"/>
+                                                                <constraint firstItem="TTY-Xt-wdu" firstAttribute="leading" secondItem="ert-vB-6pU" secondAttribute="leading" id="Vek-Nr-XM6"/>
+                                                                <constraint firstAttribute="width" constant="44" id="Zux-7L-G3V"/>
+                                                                <constraint firstAttribute="bottom" secondItem="TTY-Xt-wdu" secondAttribute="bottom" id="aNi-OC-LMI"/>
+                                                                <constraint firstItem="TTY-Xt-wdu" firstAttribute="top" secondItem="ert-vB-6pU" secondAttribute="top" id="dkj-TP-2hE"/>
+                                                                <constraint firstAttribute="trailing" secondItem="TTY-Xt-wdu" secondAttribute="trailing" id="f61-Hk-kIW"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <action selector="favoriteAction:" destination="uLw-BY-SlS" eventType="touchUpInside" id="vBD-4P-gS1"/>
+                                                            </connections>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="teo-KS-YdX" secondAttribute="trailing" constant="15" id="34D-Gu-A5D"/>
+                                                <constraint firstItem="teo-KS-YdX" firstAttribute="centerY" secondItem="3HE-hU-bqR" secondAttribute="centerY" id="BdX-XT-PY5"/>
+                                                <constraint firstItem="teo-KS-YdX" firstAttribute="top" secondItem="3HE-hU-bqR" secondAttribute="top" constant="20" id="nEF-oF-EUe"/>
+                                                <constraint firstAttribute="bottom" secondItem="teo-KS-YdX" secondAttribute="bottom" constant="20" id="q7b-M0-FPW"/>
+                                                <constraint firstItem="teo-KS-YdX" firstAttribute="leading" secondItem="3HE-hU-bqR" secondAttribute="leading" constant="15" id="wbw-3F-TYx"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="3HE-hU-bqR" firstAttribute="top" secondItem="uMn-UV-fMc" secondAttribute="topMargin" constant="10" id="GRe-uu-1bS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="3HE-hU-bqR" secondAttribute="bottom" constant="10" id="LqE-Z9-6LC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="3HE-hU-bqR" secondAttribute="trailing" constant="10" id="WKm-2p-aiB"/>
+                                        <constraint firstItem="3HE-hU-bqR" firstAttribute="leading" secondItem="uMn-UV-fMc" secondAttribute="leadingMargin" constant="10" id="sZ7-6V-6q5"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="cardView" destination="3HE-hU-bqR" id="dTg-Xw-YrI"/>
+                                    <outlet property="characterImageView" destination="nMc-WE-5Ii" id="qhb-wm-9S9"/>
+                                    <outlet property="heartImageView" destination="TTY-Xt-wdu" id="HQH-gM-9Fg"/>
+                                    <outlet property="nameLabel" destination="tNd-c7-NyW" id="RNl-U9-75z"/>
+                                    <outlet property="statusLabel" destination="Qjf-L9-gLH" id="o73-BR-Fcn"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadingCell" rowHeight="50" id="Ja4-3o-nB4" customClass="LoadingCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ja4-3o-nB4" id="d2A-uv-gbJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C22-YZ-GO2" customClass="LottieAnimationView" customModule="RickAndMortyApp" customModuleProvider="target">
+                                            <rect key="frame" x="182" y="-0.5" width="50" height="50.5"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="bjh-Wu-Ogf"/>
+                                                <constraint firstAttribute="width" constant="50" id="wpL-U9-K4I"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="resourceName" value="galaxy-orbit"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="C22-YZ-GO2" firstAttribute="centerX" secondItem="d2A-uv-gbJ" secondAttribute="centerX" id="5eJ-zo-vdL"/>
+                                        <constraint firstItem="C22-YZ-GO2" firstAttribute="centerY" secondItem="d2A-uv-gbJ" secondAttribute="centerY" id="q5E-Zw-SP9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="lottieAnimation" destination="C22-YZ-GO2" id="FCM-wO-Wws"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Qkf-ib-MOY" id="wtR-lB-bsc"/>
+                            <outlet property="delegate" destination="Qkf-ib-MOY" id="AIr-OO-7ra"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ymh-D9-nrw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMn-xb-aRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2430" y="-8"/>
         </scene>
     </scenes>
     <resources>

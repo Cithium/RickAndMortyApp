@@ -53,6 +53,7 @@ class CoreDataManager {
         }
     }
     
+    //Duplicate helper method
     func fetchPersistedLocation(locationName: String) -> Location? {
         guard let context = backgroundContext else { return nil }
         
@@ -68,11 +69,18 @@ class CoreDataManager {
         }
     }
     
-    func fetchCharacters() -> Promise<[Character]> {
+    func fetchCharacters(page: String) -> Promise<[Character]> {
         return Promise { seal in
+            guard let pageNbr = Int(page) else {
+                seal.reject(PromiseError.missingAttribute)
+                return
+            }
+            let ids = pageNbr * 20
+            
             let context = persistentContainer.viewContext
             
             let fetchRequest = NSFetchRequest<Character>(entityName: "Character")
+            fetchRequest.predicate = NSPredicate(format: "id >= %d && id <= %d ", 0, ids)
             do {
                 let characters = try context.fetch(fetchRequest)
                 seal.fulfill(characters)
@@ -101,6 +109,29 @@ class CoreDataManager {
         }
     }
     
+    func fetchResidents(ids: [Int]?) -> Promise<[Character]> {
+        return Promise { seal in
+            guard let ids = ids else {
+                seal.reject(PromiseError.missingAttribute)
+                return
+            }
+            
+            let context = persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<Character>(entityName: "Character")
+            
+            fetchRequest.predicate = NSPredicate(format: "ANY id IN %@", ids)
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+            
+            do {
+                let characters = try context.fetch(fetchRequest)
+                seal.fulfill(characters)
+            } catch let fetchErr {
+                print("Failed to fetch characters:", fetchErr)
+                seal.reject(fetchErr)
+            }
+        }
+    }
+    
     func deleteCharacters() -> Promise<Void> {
         return Promise { seal in
             let context = persistentContainer.viewContext
@@ -115,6 +146,38 @@ class CoreDataManager {
                 print("Failed to delete characters:", error)
                 seal.reject(error)
             }
+        }
+    }
+    
+    func fetchLocation(with locationName: String?) -> Promise<Location> {
+        return Promise { seal in
+            guard let locationName = locationName else {
+                seal.reject(PromiseError.missingAttribute)
+                return
+            }
+            
+            let context = persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<Location>(entityName: "Location")
+            fetchRequest.predicate = NSPredicate(format: "name == %@", locationName)
+            do {
+                let location = try context.fetch(fetchRequest)
+                seal.fulfill(location[0])
+            } catch let fetchErr {
+                print("Failed to fetch characters:", fetchErr)
+                seal.reject(fetchErr)
+            }
+        }
+    }
+}
+
+enum PromiseError: Swift.Error {
+    case missingAttribute
+    
+    public var errorDescription: String? {
+        switch self {
+        case .missingAttribute:
+            return "Missing attribute!"
         }
     }
 }

@@ -35,5 +35,55 @@ class NetworkingManger: Networkable {
         }
     }
     
+    func getCharactersWith(ids: String) -> Promise<Void> {
+        return Promise { seal in
+            service.request(.getCharactersWith(ids: ids)) { (response) in
+                switch (response) {
+                case let .success(response):
+                    do {
+                        _ = try response.filterSuccessfulStatusCodes()
+                        
+                        if (ids.count == 1) {
+                            let result = try JSONDecoder().decode(JSONCharacter.self, from: response.data)
+                            Character.fromJSONToCoreData(jsonPlaceholder: result)
+                        } else {
+                            let result = try JSONDecoder().decode([JSONCharacter].self, from: response.data)
+                            result.forEach { Character.fromJSONToCoreData(jsonPlaceholder: $0) }
+                        }
+                        
+                        seal.fulfill(())
+                    } catch {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func getLocation(id: String) -> Promise<Void> {
+        return Promise { seal in
+            service.request(.getLocation(id: id)) { (response) in
+                switch (response) {
+                case let .success(response):
+                    do {
+                        _ = try response.filterSuccessfulStatusCodes()
+                        let result = try JSONDecoder().decode(JSONLocation.self, from: response.data)
+                        Location.fromJSONToCoreData(jsonPlaceholder: result)
+                        seal.fulfill(())
+                    } catch {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
+        }
+        
+    }
+    
+    
+    
     
 }

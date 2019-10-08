@@ -36,6 +36,9 @@
 		8532A23A2330E51B00BBA461 /* GetSchwifty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8532A2392330E51A00BBA461 /* GetSchwifty.ttf */; };
 		8532A2442331211B00BBA461 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8532A2432331211B00BBA461 /* TestViewController.swift */; };
 		8532A2462331244800BBA461 /* galaxy-orbit.json in Resources */ = {isa = PBXBuildFile; fileRef = 8532A2452331244800BBA461 /* galaxy-orbit.json */; };
+		858B681F2347C95D0040852D /* LocationSampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 858B681E2347C95C0040852D /* LocationSampleData.json */; };
+		858B68212347CBFE0040852D /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B68202347CBFE0040852D /* LocationDetailsViewController.swift */; };
+		858B6823234A9B0F0040852D /* ResidentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B6822234A9B0F0040852D /* ResidentsTableViewController.swift */; };
 		85D96AD72332BC1F009741E2 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96AD62332BC1F009741E2 /* LoadingCell.swift */; };
 		85D96ADD23369F41009741E2 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96ADC23369F41009741E2 /* CustomTabBarController.swift */; };
 		85D96ADF2336A91E009741E2 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */; };
@@ -43,6 +46,9 @@
 		85D96AE92338B9E3009741E2 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */; };
 		85D96AEC2338BA41009741E2 /* CharacterDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */; };
 		85D96AF1233969F7009741E2 /* CharacterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D96AF0233969F7009741E2 /* CharacterDataSource.swift */; };
+		85DE1867234CA0ED00FE432B /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE1866234CA0ED00FE432B /* Navigator.swift */; };
+		85DE186A234CA12A00FE432B /* CharacterNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE1869234CA12A00FE432B /* CharacterNavigator.swift */; };
+		85DE186C234CC29100FE432B /* CharacterDetailsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE186B234CC29100FE432B /* CharacterDetailsNavigator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +83,9 @@
 		8532A2392330E51A00BBA461 /* GetSchwifty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GetSchwifty.ttf; sourceTree = "<group>"; };
 		8532A2432331211B00BBA461 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8532A2452331244800BBA461 /* galaxy-orbit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "galaxy-orbit.json"; sourceTree = "<group>"; };
+		858B681E2347C95C0040852D /* LocationSampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LocationSampleData.json; sourceTree = "<group>"; };
+		858B68202347CBFE0040852D /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		858B6822234A9B0F0040852D /* ResidentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsTableViewController.swift; sourceTree = "<group>"; };
 		85D96AD62332BC1F009741E2 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		85D96ADC23369F41009741E2 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		85D96ADE2336A91E009741E2 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +93,9 @@
 		85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterDetails.storyboard; sourceTree = "<group>"; };
 		85D96AF0233969F7009741E2 /* CharacterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDataSource.swift; sourceTree = "<group>"; };
+		85DE1866234CA0ED00FE432B /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		85DE1869234CA12A00FE432B /* CharacterNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNavigator.swift; sourceTree = "<group>"; };
+		85DE186B234CC29100FE432B /* CharacterDetailsNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsNavigator.swift; sourceTree = "<group>"; };
 		B2B16DFCD75528829389EF91 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CD7744973B193F7FB567C5E9 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +147,7 @@
 				85D96AE22337CDDD009741E2 /* Extensions */,
 				8511919F23241AC300760E12 /* Managers */,
 				851191A42327A94800760E12 /* Model */,
+				85DE1868234CA11700FE432B /* Navigators */,
 				851191942324136600760E12 /* Protocols */,
 				8511917E2323D73F00760E12 /* Service */,
 				85D96AEA2338BA05009741E2 /* Storyboards */,
@@ -154,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				8511917F2323D7E900760E12 /* Service.swift */,
+				858B681E2347C95C0040852D /* LocationSampleData.json */,
 				851191812323DA0700760E12 /* CharacterSampleData.json */,
 			);
 			path = Service;
@@ -164,6 +178,7 @@
 			children = (
 				851191952324138100760E12 /* JSONConvertible.swift */,
 				85119197232413E500760E12 /* Networkable+Characters.swift */,
+				85DE1866234CA0ED00FE432B /* Navigator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -237,6 +252,8 @@
 				85D96AE82338B9E3009741E2 /* CharacterDetailsViewController.swift */,
 				85D96ADC23369F41009741E2 /* CustomTabBarController.swift */,
 				85D96AE02337CD68009741E2 /* FavoriteTableViewController.swift */,
+				858B68202347CBFE0040852D /* LocationDetailsViewController.swift */,
+				858B6822234A9B0F0040852D /* ResidentsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -264,6 +281,15 @@
 				85D96AF0233969F7009741E2 /* CharacterDataSource.swift */,
 			);
 			path = DataSources;
+			sourceTree = "<group>";
+		};
+		85DE1868234CA11700FE432B /* Navigators */ = {
+			isa = PBXGroup;
+			children = (
+				85DE1869234CA12A00FE432B /* CharacterNavigator.swift */,
+				85DE186B234CC29100FE432B /* CharacterDetailsNavigator.swift */,
+			);
+			path = Navigators;
 			sourceTree = "<group>";
 		};
 		D77EE49ECCA7551CF48AFDA0 /* Frameworks */ = {
@@ -334,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858B681F2347C95D0040852D /* LocationSampleData.json in Resources */,
 				851191772323D46800760E12 /* LaunchScreen.storyboard in Resources */,
 				851191822323DA0700760E12 /* CharacterSampleData.json in Resources */,
 				8532A2462331244800BBA461 /* galaxy-orbit.json in Resources */,
@@ -394,8 +421,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858B68212347CBFE0040852D /* LocationDetailsViewController.swift in Sources */,
 				851191CA2327B0DB00760E12 /* Origin+CoreDataProperties.swift in Sources */,
 				8511916C2323D46700760E12 /* CharacterTableViewController.swift in Sources */,
+				85DE186C234CC29100FE432B /* CharacterDetailsNavigator.swift in Sources */,
 				8511919E2324188A00760E12 /* Info.swift in Sources */,
 				851F5A58232A71FB00C59D49 /* CharacterCell.swift in Sources */,
 				851191C62327B0DB00760E12 /* Location+CoreDataProperties.swift in Sources */,
@@ -403,6 +432,9 @@
 				851191C92327B0DB00760E12 /* Character+CoreDataClass.swift in Sources */,
 				8532A2442331211B00BBA461 /* TestViewController.swift in Sources */,
 				851F5A55232A63FE00C59D49 /* Labels.swift in Sources */,
+				858B6823234A9B0F0040852D /* ResidentsTableViewController.swift in Sources */,
+				85DE186A234CA12A00FE432B /* CharacterNavigator.swift in Sources */,
+				85DE1867234CA0ED00FE432B /* Navigator.swift in Sources */,
 				851191A123241B1D00760E12 /* NetworkingManager.swift in Sources */,
 				851191802323D7E900760E12 /* Service.swift in Sources */,
 				85D96ADD23369F41009741E2 /* CustomTabBarController.swift in Sources */,

@@ -13,6 +13,12 @@ class CustomNavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationBar.tintColor = UIColor.neonGreen
+    }
+    
 }
 
 extension UINavigationController {

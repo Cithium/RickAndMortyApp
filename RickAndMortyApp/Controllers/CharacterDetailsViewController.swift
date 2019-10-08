@@ -18,26 +18,30 @@ class CharacterDetailsViewController: UIViewController {
     @IBOutlet weak var locationLabel: GreenLCDLabel!
     
     var character: Character!
+    var characterDetailsNavigator: CharacterDetailsNavigator!
+    
+    @IBAction func showLocationsDetails(_ sender: Any) {
+        characterDetailsNavigator.navigate(to: .locationDetails(charater: character))
+    }
     
     @objc func dismissFlow() {
-        guard let navController = navigationController else { return }
-        
-        navController.dismiss(animated: true, completion: nil)
+        characterDetailsNavigator.dismissFlow()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        characterDetailsNavigator = CharacterDetailsNavigator(navigationController: navigationController!)
         cardView.hero.id = String(describing: character.id)
-        
-        let closeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "ico_close"), style: .plain, target: self, action: #selector(dismissFlow))
-        navigationItem.rightBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.neonGreen
-        navigationItem.title = "Details"
         
         setupView()
     }
     
     private func setupView() {
+        let closeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "ico_close"), style: .plain, target: self, action: #selector(dismissFlow))
+        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.neonGreen
+        navigationItem.title = "Details"
+        
         nameLabel.text = character.name ?? "-"
         statusLabel.text = character.status ?? "-"
         originLabel.text = character.origin?.name ?? "-"

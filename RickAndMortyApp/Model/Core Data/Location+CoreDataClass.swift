@@ -33,3 +33,48 @@ public class Location: NSManagedObject, JSONConvertible {
     
 
 }
+
+extension Location {
+    var residentIdsString: String {
+        get {
+            var stringForUrl = ""
+            guard let idsList = trimResidentIdsFromUrl() else { return "" }
+            
+            for id in idsList {
+                if (id == idsList.last) {
+                    stringForUrl.append(id)
+                } else {
+                    stringForUrl.append(id + ",")
+                }
+            }
+            
+            return stringForUrl
+        }
+    }
+    
+    var residentIds: [Int]? {
+        get {
+            guard let list = trimResidentIdsFromUrl() else {
+                return nil
+            }
+            return list.compactMap { Int($0) }
+        }
+    }
+    
+    private func trimResidentIdsFromUrl() -> [String]? {
+        guard let residentUrls = residents else { return nil }
+        
+        
+        var idsList = [String]()
+        for url in residentUrls {
+            if let range = url.range(of: "character/") {
+                let subString = url[range.upperBound...]
+                let id = String(subString)
+                
+                idsList.append(id)
+            }
+        }
+        
+        return idsList
+    }
+}

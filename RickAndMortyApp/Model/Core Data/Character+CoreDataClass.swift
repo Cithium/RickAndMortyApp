@@ -32,10 +32,11 @@ public class Character: NSManagedObject, JSONConvertible {
         }
         
         location.name       = jsonLocation.name
-        location.type       = jsonLocation.type
-        location.dimension  = jsonLocation.dimension
-        location.residents  = jsonLocation.residents
         location.url        = jsonLocation.url
+        
+        location.type       = jsonLocation.type ?? location.type
+        location.dimension  = jsonLocation.dimension ?? location.dimension
+        location.residents  = jsonLocation.residents ?? location.residents
         
         let jsonOrigin      = jsonCharacter.origin
         let origin          = Origin(context: CoreDataManager.shared.backgroundContext)
@@ -50,4 +51,22 @@ public class Character: NSManagedObject, JSONConvertible {
     }
     
 
+}
+
+extension Character {
+    var locationId: String {
+        get {
+            return trimLocationIdFromUrl(url: location?.url ?? "")
+        }
+    }
+    
+    func trimLocationIdFromUrl(url: String) -> String {
+        if let range = url.range(of: "location/") {
+            let subString = url[range.upperBound...]
+            let id = String(subString)
+            
+            return id
+        }
+        return ""
+    }
 }
