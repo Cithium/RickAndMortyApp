@@ -23,16 +23,18 @@ class CharacterNavigator: Navigator {
     func navigate(to destination: Destination) {
         let viewController = makeViewController(for: destination)
         
-        if let navigationController = viewController as? CustomNavigationController, let firstViewController = navigationController.viewControllers.first, (firstViewController is CharacterDetailsViewController) {
+        if let navController = viewController as? UINavigationController, let firstViewController = navController.viewControllers.first, (firstViewController is CharacterDetailsViewController) {
             
             /* For some reason, animation doesnt work unless this is used.
              Very strange, considiring the code already executes on the main thread.
              Seems to be some kind of iOS bug and not the Hero library.
              */
                 DispatchQueue.main.async {
+                    //viewController.hero.modalAnimationType = .selectBy(presenting: .none, dismissing: .zoomOut)
                     self.navigationController?.present(viewController, animated: true, completion: nil)
                 }
         } else {
+           // viewController.hero.modalAnimationType = .selectBy(presenting: .none, dismissing: .zoomOut)
             navigationController?.present(viewController, animated: true, completion: nil)
         }
         

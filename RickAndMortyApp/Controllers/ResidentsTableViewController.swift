@@ -17,11 +17,20 @@ class ResidentsTableViewController: BaseTableViewController {
     let coreDataManager = CoreDataManager.shared
     var loading: Bool = false
     var info: Info!
+    var spinner: LottieAnimationView!
     
+    var residents: [Character]?
     var location: Location!
+    var selectedCharacter: Character?
     
     var characterDataSource: TableViewDataSource<Character>!
     private let customRefreshControl = CustomRefreshControl()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? ResidentDetailsViewController {
+            destinationVC.character = selectedCharacter
+        }
+    }
     
     @objc func dismissFlow() {
         guard let navController = navigationController else { return }
@@ -32,17 +41,21 @@ class ResidentsTableViewController: BaseTableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        guard (residents == nil) else { return }
         
-         firstly {
-            networkingManager.getCharactersWith(ids: self.location.residentIdsString)
-         }.then {
-            self.coreDataManager.fetchResidents(ids: self.location.residentIds)
-         }.done { (chars) in
-            self.charactersDidLoad(chars)
-            self.tableView.reloadData()
-         }.catch { error in
-            print(error.localizedDescription)
-         }
+            firstly {
+                networkingManager.getCharactersWith(ids: self.location.residentIdsString)
+            }.then {
+                self.coreDataManager.fetchResidents(ids: self.location.residentIds)
+            }.done { (chars) in
+                self.residents = chars
+                self.charactersDidLoad(chars)
+                self.tableView.reloadData()
+                self.spinner.isHidden = true
+                self.tableView.tableHeaderView = nil
+            }.catch { error in
+                print(error.localizedDescription)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,12 +67,10 @@ class ResidentsTableViewController: BaseTableViewController {
         super.viewDidLoad()
         navigationItem.title = "Residents"
         setupViews()
-
     }
 }
 
 extension ResidentsTableViewController {
-    
     func charactersDidLoad(_ characters: [Character]) {
         let dataSource = TableViewDataSource(
             models: characters,
@@ -81,6 +92,12 @@ extension ResidentsTableViewController {
         tableView.dataSource = dataSource
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = characterDataSource.models[indexPath.row]
+        selectedCharacter = character
+        performSegue(withIdentifier: "residentDetailsSegue", sender: self)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
@@ -93,19 +110,19 @@ extension ResidentsTableViewController {
         }
     }
     
+    
     func setupViews() {
         let closeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "ico_close"), style: .plain, target: self, action: #selector(dismissFlow))
         navigationItem.rightBarButtonItem = closeButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.neonGreen
         
-        let spinner = LottieAnimationView()
+        spinner = LottieAnimationView()
         spinner.resourceName = "galaxy-orbit"
+        spinner.isHidden = false
         spinner.autoPlay = true
         spinner.playAnimation()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-        
-        self.tableView.tableFooterView = spinner
-        self.tableView.tableFooterView?.isHidden = true
+        spinner.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        self.tableView.tableHeaderView = spinner
     }
 }
 
@@ -115,3 +132,4 @@ extension ResidentsTableViewController: CharacterCellDelegate {
         coreDataManager.save()
     }
 }
+

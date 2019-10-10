@@ -11,6 +11,12 @@ import UIKit
 import PromiseKit
 
 class LocationDetailsViewController: UIViewController {
+    @IBOutlet weak var spinnerView: LottieAnimationView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageTitle: UILabel!
+    @IBOutlet weak var contentStackView: UIStackView!
+    
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var dimension: UILabel!
@@ -43,10 +49,7 @@ class LocationDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Location"
-        
-        let closeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "ico_close"), style: .plain, target: self, action: #selector(dismissFlow))
-        navigationItem.rightBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.neonGreen
+        setupViews()
         
         firstly {
             networkManager.getLocation(id: character.locationId)
@@ -57,14 +60,44 @@ class LocationDetailsViewController: UIViewController {
         }.catch { error in
             print(error.localizedDescription)
         }.finally {
-            self.setupView()
+            self.setupAndAnimateView()
         }
         
     }
     
-    private func setupView() {
+    private func setupViews() {
+        imageView.alpha = 0.0
+        imageTitle.alpha = 0.0
+        contentStackView.alpha = 0.0
+        
+        spinnerView.alpha = 1.0
+        
+        let closeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "ico_close"), style: .plain, target: self, action: #selector(dismissFlow))
+        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.neonGreen
+        
+    }
+    
+    private func setupAndAnimateView() {
         nameLabel.text = location?.name ?? "-"
         typeLabel.text = location?.type ?? "-"
         dimension.text = location?.dimension ?? "-"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            UIView.animate(withDuration: 0.4, animations: {
+                self.spinnerView.alpha = 0.0
+            }) { _ in
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.imageView.alpha = 1.0
+                    self.imageTitle.alpha = 1.0
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.contentStackView.alpha = 1.0
+                    })
+                })
+            }
+        }
+        
+        
     }
 }

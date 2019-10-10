@@ -17,6 +17,7 @@ class CustomNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.tintColor = UIColor.neonGreen
+        
     }
     
 }

@@ -16,7 +16,6 @@ class BaseTableViewController: UITableViewController {
         let imageView = UIImageView(image: UIImage(named: "stars"))
         imageView.contentMode = .scaleAspectFill
         self.hero.isEnabled = true
-        imageView.hero.id = "stars"
         self.tableView.backgroundView = imageView
     }
     
