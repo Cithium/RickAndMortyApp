@@ -16,6 +16,7 @@ class CharacterTableViewController: BaseTableViewController {
     let networkingManager = NetworkingManger.shared
     let coreDataManager = CoreDataManager.shared
     
+    var favoriteObserver: NSObjectProtocol!
     var loading: Bool = false
     var info: Info!
     
@@ -30,6 +31,7 @@ class CharacterTableViewController: BaseTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        favoriteObserver = Foundation.NotificationCenter.default.addObserver(forName: .favoritesChanged, object: nil, queue: nil, using: updateFavorites)
     }
     
     override func viewDidLoad() {
@@ -144,7 +146,7 @@ extension CharacterTableViewController {
         loading = true
         self.hideSpinner(false)
        
-      // RickAndMorty-API is very fast, used this to make sure spinner works
+      // RickAndMorty-API is very fast, used this to make sure spinner shows
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                 firstly {
                     self.networkingManager.getCharacters(page: self.info.nextPage)
@@ -210,11 +212,26 @@ extension CharacterTableViewController: CharacterCellDelegate {
     }
 }
 
+extension CharacterTableViewController {
+    private func updateFavorites(note: Notification) {
+        if let characterId = note.userInfo?["id"] as? Int64, let index = (self.characterDataSource.models.firstIndex { $0.id == characterId }) {
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+
+        }
+    }
+}
+
+
 extension UITableView {
     func centerLastShown(row: Int) {
         let indexPath = IndexPath(row: row, section: 0);
         scrollToRow(at: indexPath, at: .middle, animated: false)
     }
+}
+
+extension NSNotification.Name {
+    static let favoritesChanged = Notification.Name("favoritesChanged")
 }
 
 

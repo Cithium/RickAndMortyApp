@@ -36,6 +36,8 @@
 		8532A23A2330E51B00BBA461 /* GetSchwifty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8532A2392330E51A00BBA461 /* GetSchwifty.ttf */; };
 		8532A2442331211B00BBA461 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8532A2432331211B00BBA461 /* TestViewController.swift */; };
 		8532A2462331244800BBA461 /* galaxy-orbit.json in Resources */ = {isa = PBXBuildFile; fileRef = 8532A2452331244800BBA461 /* galaxy-orbit.json */; };
+		856B074A23551BEA0069A58E /* CharacterLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 856B074923551BEA0069A58E /* CharacterLocation.storyboard */; };
+		856B074C23551FF60069A58E /* CharacterLocationNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856B074B23551FF60069A58E /* CharacterLocationNavigator.swift */; };
 		858B681F2347C95D0040852D /* LocationSampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 858B681E2347C95C0040852D /* LocationSampleData.json */; };
 		858B68212347CBFE0040852D /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B68202347CBFE0040852D /* LocationDetailsViewController.swift */; };
 		858B6823234A9B0F0040852D /* ResidentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B6822234A9B0F0040852D /* ResidentsTableViewController.swift */; };
@@ -83,6 +85,8 @@
 		8532A2392330E51A00BBA461 /* GetSchwifty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GetSchwifty.ttf; sourceTree = "<group>"; };
 		8532A2432331211B00BBA461 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8532A2452331244800BBA461 /* galaxy-orbit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "galaxy-orbit.json"; sourceTree = "<group>"; };
+		856B074923551BEA0069A58E /* CharacterLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterLocation.storyboard; sourceTree = "<group>"; };
+		856B074B23551FF60069A58E /* CharacterLocationNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLocationNavigator.swift; sourceTree = "<group>"; };
 		858B681E2347C95C0040852D /* LocationSampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LocationSampleData.json; sourceTree = "<group>"; };
 		858B68202347CBFE0040852D /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		858B6822234A9B0F0040852D /* ResidentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsTableViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			children = (
 				851191752323D46800760E12 /* LaunchScreen.storyboard */,
 				85D96AEB2338BA41009741E2 /* CharacterDetails.storyboard */,
+				856B074923551BEA0069A58E /* CharacterLocation.storyboard */,
 				8511916D2323D46700760E12 /* Main.storyboard */,
 			);
 			path = Storyboards;
@@ -288,6 +293,7 @@
 			children = (
 				85DE1869234CA12A00FE432B /* CharacterNavigator.swift */,
 				85DE186B234CC29100FE432B /* CharacterDetailsNavigator.swift */,
+				856B074B23551FF60069A58E /* CharacterLocationNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				851191822323DA0700760E12 /* CharacterSampleData.json in Resources */,
 				8532A2462331244800BBA461 /* galaxy-orbit.json in Resources */,
 				851F5A56232A671500C59D49 /* LCD_Solid.ttf in Resources */,
+				856B074A23551BEA0069A58E /* CharacterLocation.storyboard in Resources */,
 				851191742323D46800760E12 /* Assets.xcassets in Resources */,
 				85D96AEC2338BA41009741E2 /* CharacterDetails.storyboard in Resources */,
 				8532A23A2330E51B00BBA461 /* GetSchwifty.ttf in Resources */,
@@ -433,6 +440,7 @@
 				8532A2442331211B00BBA461 /* TestViewController.swift in Sources */,
 				851F5A55232A63FE00C59D49 /* Labels.swift in Sources */,
 				858B6823234A9B0F0040852D /* ResidentsTableViewController.swift in Sources */,
+				856B074C23551FF60069A58E /* CharacterLocationNavigator.swift in Sources */,
 				85DE186A234CA12A00FE432B /* CharacterNavigator.swift in Sources */,
 				85DE1867234CA0ED00FE432B /* Navigator.swift in Sources */,
 				851191A123241B1D00760E12 /* NetworkingManager.swift in Sources */,

@@ -1,17 +1,19 @@
 //
-//  LocationDetailsNavigator.swift
+//  CharacterLocationNavigator.swift
 //  RickAndMortyApp
 //
-//  Created by Hamza Abdulilah on 2019-10-08.
+//  Created by Hamza Abdulilah on 2019-10-14.
 //  Copyright © 2019 Hamza Abdulilah. All rights reserved.
 //
 
 import Foundation
+
+import Foundation
 import UIKit
 
-class CharacterDetailsNavigator: Navigator {
+class CharacterLocationNavigator: Navigator {
     enum Destination {
-        case locationDetails(charater: Character)
+        case locationResidents(location: Location)
     }
     
     private weak var navigationController: UINavigationController?
@@ -33,10 +35,10 @@ class CharacterDetailsNavigator: Navigator {
     
     private func makeViewController(for destination: Destination) -> UIViewController {
         switch destination {
-        case .locationDetails(let character):
-            let storyBoard : UIStoryboard = UIStoryboard(name: "CharacterLocation", bundle:nil)
-            let locationViewController = storyBoard.instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
-            locationViewController.character = character
+        case .locationResidents(let location):
+            let storyBoard : UIStoryboard = UIStoryboard(name: "CharacterLocation", bundle: nil)
+            let locationViewController = storyBoard.instantiateViewController(withIdentifier: "ResidentsTableViewController") as! ResidentsTableViewController
+            locationViewController.location = location
             return locationViewController
         }
     }

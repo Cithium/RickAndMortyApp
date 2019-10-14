@@ -18,8 +18,12 @@ class FavoriteTableViewController: BaseTableViewController {
     var loading: Bool = false
     var info: Info!
     
-    var characterDataSource: TableViewDataSource<Character>!
+    var favoritesDataSource: TableViewDataSource<Character>!
     private let customRefreshControl = CustomRefreshControl()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,28 +35,19 @@ class FavoriteTableViewController: BaseTableViewController {
                 self.tableView.reloadData()
             }.catch { error in
                 print(error.localizedDescription)
-        }
+            }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Favorites"
         setupViews()
-        /*
-            firstly {
-                self.coreDataManager.fetchFavoriteCharacters()
-            }.done { (chars) in
-                self.charactersDidLoad(chars)
-                self.tableView.reloadData()
-            }.catch { error in
-                print(error.localizedDescription)
-            } */
     }
 }
 
 extension FavoriteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characterDataSource.models[indexPath.row]
+        let character = favoritesDataSource.models[indexPath.row]
         
         let targetStoryBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
         if let navController = targetStoryBoard.instantiateInitialViewController() as? UINavigationController, let controller = navController.topViewController as? CharacterDetailsViewController {
@@ -82,7 +77,7 @@ extension FavoriteTableViewController {
             }
         }
         
-        self.characterDataSource = dataSource
+        self.favoritesDataSource = dataSource
         tableView.dataSource = dataSource
     }
     
@@ -96,6 +91,24 @@ extension FavoriteTableViewController {
                 cell.contentView.alpha = 1.0
             }, completion: nil)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.favoritesDataSource.models[indexPath.row].isFavorite = false
+            self.favoritesDataSource.models.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+            /* This results in UI glitch for the TableView background image
+            tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+            tableView.endUpdates()
+            */
+            //  self.coreDataManager.save()
+            print("delete favorite")
+        }
+        delete.backgroundColor = .neonGreen
+        return [delete]
     }
     
     func setupViews() {
@@ -113,7 +126,18 @@ extension FavoriteTableViewController {
 extension FavoriteTableViewController: CharacterCellDelegate {
     func didFavorite(with character: Character) {
         character.isFavorite = !character.isFavorite
-        coreDataManager.save()
+        firstly {
+            self.coreDataManager.fetchFavoriteCharacters()
+            }.done { (chars) in
+                self.charactersDidLoad(chars)
+                self.tableView.reloadData()
+            }.catch { error in
+                print(error.localizedDescription)
+            }.finally {
+                self.coreDataManager.save()
+                NotificationCenter.default.post(name: .favoritesChanged, object: nil, userInfo: ["id": character.id])
+            }
+        
     }
 }
 

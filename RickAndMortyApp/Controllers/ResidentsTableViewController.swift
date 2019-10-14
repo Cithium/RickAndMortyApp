@@ -19,8 +19,8 @@ class ResidentsTableViewController: BaseTableViewController {
     var info: Info!
     var spinner: LottieAnimationView!
     
-    var residents: [Character]?
     var location: Location!
+    var residents: [Character]?
     var selectedCharacter: Character?
     
     var characterDataSource: TableViewDataSource<Character>!
@@ -60,7 +60,6 @@ class ResidentsTableViewController: BaseTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
     }
     
     override func viewDidLoad() {
@@ -129,6 +128,7 @@ extension ResidentsTableViewController {
 extension ResidentsTableViewController: CharacterCellDelegate {
     func didFavorite(with character: Character) {
         character.isFavorite = !character.isFavorite
+        NotificationCenter.default.post(name: .favoritesChanged, object: nil, userInfo: ["id": character.id])
         coreDataManager.save()
     }
 }

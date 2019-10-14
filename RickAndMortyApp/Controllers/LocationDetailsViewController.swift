@@ -25,7 +25,7 @@ class LocationDetailsViewController: UIViewController {
     let networkManager = NetworkingManger.shared
     let coreDataManager = CoreDataManager.shared
     
-    var navigator: CharacterDetailsNavigator!
+    var navigator: CharacterLocationNavigator!
     
     var character: Character!
     var location: Location?
@@ -37,7 +37,8 @@ class LocationDetailsViewController: UIViewController {
     }
     
     @IBAction func residentsTapped(_ sender: Any) {
-        performSegue(withIdentifier: "residentsSegue", sender: self)
+        guard let location = self.location else { return }
+        navigator.navigate(to: .locationResidents(location: location))
     }
     
     @objc func dismissFlow() {
@@ -48,6 +49,7 @@ class LocationDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigator = CharacterLocationNavigator(navigationController: self.navigationController!)
         self.navigationItem.title = "Location"
         setupViews()
         
