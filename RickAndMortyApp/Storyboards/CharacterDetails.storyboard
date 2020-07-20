@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EHP-bB-hvh">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EHP-bB-hvh">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +10,7 @@
         <!--Custom Navigation Controller-->
         <scene sceneID="HZF-e2-L3N">
             <objects>
-                <navigationController id="EHP-bB-hvh" customClass="CustomNavigationController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="EHP-bB-hvh" customClass="CustomNavigationController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nff-b0-XkI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -58,16 +55,16 @@
                                         <rect key="frame" x="10" y="190" width="324" height="464"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wkI-Qw-f1O">
-                                                <rect key="frame" x="0.0" y="0.0" width="324" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBK-Mi-0xs" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="13.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54D-4u-Mkn" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="13.5"/>
+                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -75,16 +72,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VCt-Ex-fgo">
-                                                <rect key="frame" x="0.0" y="33.5" width="324" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="40.5" width="324" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kG7-Xl-VrD" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="13.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="249" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioe-PT-t54" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="13.5"/>
+                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -92,16 +89,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Z5K-su-5zM">
-                                                <rect key="frame" x="0.0" y="67" width="324" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="81" width="324" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Origin:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6d-tr-KeN" customClass="WhiteLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="13.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsQ-iX-9ha" customClass="GreenLCDLabel" customModule="RickAndMortyApp" customModuleProvider="target">
-                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="13.5"/>
+                                                        <rect key="frame" x="164.5" y="0.0" width="159.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -109,7 +106,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXZ-DQ-8v7" customClass="UIControl">
-                                                <rect key="frame" x="0.0" y="100.5" width="324" height="50"/>
+                                                <rect key="frame" x="0.0" y="121.5" width="324" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-BJ-wJT">
                                                         <rect key="frame" x="0.0" y="0.0" width="324" height="50"/>
@@ -150,7 +147,7 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="9is-Jr-smZ">
-                                                <rect key="frame" x="0.0" y="170.5" width="324" height="293.5"/>
+                                                <rect key="frame" x="0.0" y="191.5" width="324" height="272.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>

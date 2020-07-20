@@ -40,16 +40,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = UIColor.darkBlue
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 13.0, *) {
             UINavigationBar.appearance().prefersLargeTitles = true
-            UINavigationBar.appearance().largeTitleTextAttributes = [
+            
+            let coloredAppearance = UINavigationBarAppearance()
+            coloredAppearance.backgroundColor = .darkBlue
+            coloredAppearance.largeTitleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: UIColor.neonBlue,
                 NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 44.0),
                 NSAttributedString.Key.strokeColor: UIColor.neonGreen,
                 NSAttributedString.Key.strokeWidth: -2.0,
-                
               //  NSAttributedString.Key.shadow
             ]
+            coloredAppearance.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.neonBlue,
+                NSAttributedString.Key.font: UIFont(name: "Get Schwifty", size: 26.0),
+                NSAttributedString.Key.strokeColor: UIColor.neonGreen,
+                NSAttributedString.Key.strokeWidth: -1.5
+            ]
+            let proxyNavBarAppearance = UINavigationBar.appearance()
+            proxyNavBarAppearance.scrollEdgeAppearance = coloredAppearance
+            proxyNavBarAppearance.standardAppearance = coloredAppearance
         }
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.neonBlue,

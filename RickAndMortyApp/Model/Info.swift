@@ -12,7 +12,7 @@ struct Info: Decodable {
     var count: Int
     var pages: Int
     var next: String
-    var prev: String
+    var prev: String?
 }
 
 extension Info {
@@ -22,9 +22,9 @@ extension Info {
         }
     }
     
-    var prevPage: String {
+    var prevPage: String? {
         get {
-          return trimPageFromUrl(url: prev)
+            return trimPageFromUrl(url: prev!)
         }
     }
     
